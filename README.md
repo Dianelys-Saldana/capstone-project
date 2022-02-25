@@ -3,5 +3,5 @@
 ## Instructions:
 1. npm install -g expo-cli
 2. expo init Frontend
-3. cd frontend
+3. cd Frontend
 4. npm start 
