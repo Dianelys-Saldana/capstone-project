@@ -1,9 +1,0 @@
-{
-    "name": "capstone-project-djk",
-    "description": "Capstone Project Spring 2022",
-    "version": "1.0.0",
-    "engines": {
-        "node": "16.x",
-        "npm": "6.x"
-    }
-}
