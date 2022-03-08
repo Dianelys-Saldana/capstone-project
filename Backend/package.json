@@ -1,12 +1,9 @@
 {
-  "lockfileVersion": 1,
-
-  "name": "capstone-project-djk",
+    "name": "capstone-project-djk",
   "description": "Capstone Project Spring 2022",
   "version": "1.0.0",
   "private": true,
   "engines": {
-      "node": "16.x",
-      "npm": "6.x"
+      "python": "3.9.10"
   }
 }
