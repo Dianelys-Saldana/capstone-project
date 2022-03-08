@@ -31,7 +31,7 @@ iniconfig==1.1.1
 ipykernel==5.5.3
 ipython==7.22.0
 ipython-genutils==0.2.0
-itsdangerous==1.1.0
+#itsdangerous==1.1.0
 jedi==0.18.0
 #Jinja2==2.11.3
 jupyter-client==6.1.12
