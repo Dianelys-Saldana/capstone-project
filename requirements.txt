@@ -38,7 +38,11 @@ jupyter-client==6.1.12
 jupyter-core==4.7.1
 Mako==1.1.4
 MarkupSafe==2.0.1
+node==0.9.28
+npm==0.1.1
 numpy==1.20.2
+odict==1.8.0
+optional-django==0.1.0
 orjson==3.5.2
 packaging==20.9
 parso==0.8.2
@@ -46,6 +50,7 @@ passlib==1.7.4
 pickleshare==0.7.5
 Pillow==8.2.0
 pluggy==0.13.1
+plumber==1.6
 promise==2.3
 prompt-toolkit==3.0.18
 psycopg2==2.8.6
@@ -56,7 +61,7 @@ pydantic==1.8.1
 Pygments==2.8.1
 pyparsing==2.4.7
 pytest==6.2.3
-python-dateutil==2.8.1
+python-dateutil==1.5
 python-dotenv==0.17.0
 python-editor==1.0.4
 python-jose==3.2.0
@@ -81,3 +86,9 @@ watchgod==0.7
 wcwidth==0.2.5
 websockets==8.1
 Werkzeug==2.0.2
+zope.component==5.0.1
+zope.deprecation==4.4.0
+zope.event==4.5.0
+zope.hookable==5.1.0
+zope.interface==5.4.0
+zope.lifecycleevent==4.3
