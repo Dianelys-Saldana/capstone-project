@@ -16,6 +16,8 @@ export default function useCachedResources() {
         await Font.loadAsync({
           ...FontAwesome.font,
           'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          'alata': require('../assets/fonts/Alata-Regular.ttf'),
+          'baloo2': require('../assets/fonts/Baloo2-VariableFont_wght.ttf'),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
