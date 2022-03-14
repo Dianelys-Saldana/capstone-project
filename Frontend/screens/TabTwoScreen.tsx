@@ -23,6 +23,7 @@ export default function TabTwoScreen() {
       <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
       <TextInput style={styles.email} placeholder={'Email'}></TextInput>
       
+      <Image style={styles.userIcon} source={require('../assets/images/email.png')}/>
       <SelectDropdown
         data={users}
         // defaultValueByIndex={1}
@@ -302,5 +303,12 @@ const styles = StyleSheet.create({
   dropdown1RowTxtStyle: { 
     color: "#444", 
     textAlign: "left" 
+  },
+  userIcon:{
+    position: 'absolute',
+    width: 37,
+    height: 37,
+    left: 40,
+    top: 387,
   },
 });
