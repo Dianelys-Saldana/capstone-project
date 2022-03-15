@@ -20,7 +20,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'SignIn'
       <TextInput style={styles.pass} placeholder={'Password'}></TextInput>
       <Text style={styles.forgot}>Forgot Password?</Text>
       
-      <Pressable style={styles.login} onPress={() => {alert('Welcome!');}}>
+      <Pressable style={styles.login} onPress={() => navigation.navigate('Dashboard')}> 
         <Text style={styles.text}>Login</Text>
       </Pressable>
 
