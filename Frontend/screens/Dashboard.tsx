@@ -63,12 +63,35 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'SignIn'
             <Text style={styles.wellSpec}>Wellness and Other Services</Text>
             <Text style={styles.see2}>See all</Text>
 
-            <View style={[styles.wellBox,{position: 'absolute'}]}></View>
-            <View style={[styles.wellBox2,{position: 'absolute'}]}></View>
-            <View style={[styles.wellBox3,{position: 'absolute'}]}></View>
-            <View style={[styles.wellBox4,{position: 'absolute'}]}></View>
-            <View style={[styles.wellBox5,{position: 'absolute'}]}></View>
-            <View style={[styles.wellBox6,{position: 'absolute'}]}></View>
+            <View style={[styles.wellBox,{position: 'absolute'}]}>
+                <Text style={styles.chiro}>Chiropractic</Text>
+                <Image style={styles.chiroIcon} source={require('../assets/images/chiro.png')}/>
+            </View>
+
+            <View style={[styles.wellBox2,{position: 'absolute'}]}>
+                <Text style={styles.massage}>Massaging</Text>
+                <Image style={styles.massageIcon} source={require('../assets/images/massage.png')}/>
+            </View>
+
+            <View style={[styles.wellBox3,{position: 'absolute'}]}>
+                <Text style={styles.pt}>Personal Training</Text>
+                <Image style={styles.ptIcon} source={require('../assets/images/pt.png')}/>
+            </View>
+
+            <View style={[styles.wellBox4,{position: 'absolute'}]}>
+                <Text style={styles.hn}>Home Nurse</Text>
+                <Image style={styles.hnIcon} source={require('../assets/images/hn.png')}/>
+            </View>
+
+            <View style={[styles.wellBox5,{position: 'absolute'}]}>
+                <Text style={styles.wl}>Weight Loss</Text>
+                <Image style={styles.wlIcon} source={require('../assets/images/wl.png')}/>
+            </View>
+
+            <View style={[styles.wellBox6,{position: 'absolute'}]}>
+                <Text style={styles.add}>Add</Text>
+                <Image style={styles.addIcon} source={require('../assets/images/add.png')}/>
+            </View>
 
         </View>
     </View>
@@ -452,5 +475,107 @@ const styles = StyleSheet.create({
     height: 40,
     top: 18,
     left: 23,
+  },
+  chiro: {
+    position: 'absolute',
+    width: 80,
+    height: 45,
+    top: 65,
+    left: 5,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 10,
+  },
+  chiroIcon: {
+    position: 'absolute',
+    width: 40,
+    height: 40,
+    top: 18,
+    left: 25,
+  },
+  massage: {
+    position: 'absolute',
+    width: 80,
+    height: 45,
+    top: 65,
+    left: 5,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 10,
+  },
+  massageIcon: {
+    position: 'absolute',
+    width: 45,
+    height: 45,
+    top: 18,
+    left: 20,
+  }, 
+  pt: {
+    position: 'absolute',
+    width: 80,
+    height: 45,
+    top: 55,
+    left: 5,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 10,
+  }, 
+  ptIcon: {
+    position: 'absolute',
+    width: 40,
+    height: 40,
+    top: 18,
+    left: 27,
+  },
+  hn: {
+    position: 'absolute',
+    width: 80,
+    height: 45,
+    top: 65,
+    left: 5,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 10,
+  },
+  hnIcon: {
+    position: 'absolute',
+    width: 40,
+    height: 40,
+    top: 18,
+    left: 23,
+  },
+  wl: {
+    position: 'absolute',
+    width: 80,
+    height: 45,
+    top: 65,
+    left: 5,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 10,
+  },
+  wlIcon: {
+    position: 'absolute',
+    width: 45,
+    height: 45,
+    top: 20,
+    left: 23,
+  },
+  add: {
+    position: 'absolute',
+    width: 80,
+    height: 45,
+    top: 65,
+    left: 5,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 10,
+  },
+  addIcon: {
+    position: 'absolute',
+    width: 45,
+    height: 45,
+    top: 20,
+    left: 22,
   }
 });
