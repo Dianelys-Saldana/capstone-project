@@ -182,10 +182,10 @@ const styles = StyleSheet.create({
     
   },
   account: {
-    // position: 'absolute',
+    position: 'absolute',
     width: 430,
     height: 39,
-    left: -35,
+    left: -225,
     top: 320,
     
     // fontFamily: 'Baloo 2',
@@ -320,8 +320,8 @@ const styles = StyleSheet.create({
     top: 387,
   },
   login: {
-    position: 'absolute',
-    left: 290,
+    // position: 'absolute',
+    left: 100,
     top: 322,
     
     // fontFamily: 'Baloo 2',
