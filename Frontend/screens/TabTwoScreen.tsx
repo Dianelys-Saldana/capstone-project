@@ -3,12 +3,13 @@ import { Image, StyleSheet, TextInput, Button, Pressable} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { RootTabScreenProps } from '../types';
 
 import SelectDropdown from 'react-native-select-dropdown'
 
 const users = ["Patient", "Service Provider"]
 
-export default function TabTwoScreen() {
+export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'>) {
   return (
     <View style={styles.container}>
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
@@ -55,7 +56,12 @@ export default function TabTwoScreen() {
         <Text style={styles.text}>Sign up</Text>
       </Pressable>
 
-      <Text style={styles.account}>Already have an account? Login</Text>
+      {/* <Text style={styles.account}>Already have an account? Login</Text> */}
+
+      <Pressable onPress={() => navigation.navigate('SignIn')}> 
+        <Text style={styles.account}>Already have an account? </Text>
+        <Text style={styles.login}>Login</Text>
+      </Pressable>
       
       <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
     </View>
@@ -176,19 +182,19 @@ const styles = StyleSheet.create({
     
   },
   account: {
-    position: 'absolute',
+    // position: 'absolute',
     width: 430,
     height: 39,
-    left: -1,
-    top: 700,
+    left: -35,
+    top: 320,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
     // fontWeight: 400,
     fontSize: 18,
     lineHeight: 28,
-    display: 'flex',
-    alignItems: 'center',
+    // display: 'flex',
+    // alignItems: 'center',
     textAlign: 'center',
     
     color: '#2E2E41',   
@@ -312,5 +318,19 @@ const styles = StyleSheet.create({
     height: 37,
     left: 40,
     top: 387,
+  },
+  login: {
+    position: 'absolute',
+    left: 290,
+    top: 322,
+    
+    // fontFamily: 'Baloo 2',
+    // fontStyle: 'normal',
+    // fontWeight: 400,
+    fontSize: 18,
+    fontWeight: 'bold', 
+    textDecorationLine: 'underline',
+    
+    color: '#0E7979',   
   },
 });

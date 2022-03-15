@@ -66,6 +66,7 @@
          tabBarIconStyle: { display: "none" },
          tabBarLabelStyle: {
           fontSize: 20,
+          fontWeight: 'bold',
         },
        }}>
      

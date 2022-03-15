@@ -24,7 +24,10 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'SignIn'
         <Text style={styles.text}>Login</Text>
       </Pressable>
 
-      <Text style={styles.account}>Don't have an account? Sign up!</Text>
+      <Pressable onPress={() => navigation.navigate('SignUp')}> 
+        <Text style={styles.account}>Don't have an account? </Text>
+        <Text style={styles.account2}>Sign up!</Text>
+      </Pressable>
 
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />
     </View>
@@ -168,21 +171,28 @@ const styles = StyleSheet.create({
     
   },
   account: {
-    position: 'absolute',
-    width: 430,
-    height: 39,
-    left: -1,
-    top: 725,
+    left: -40,
+    top: 345,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
     // fontWeight: 400,
     fontSize: 18,
-    lineHeight: 28,
-    display: 'flex',
-    alignItems: 'center',
-    textAlign: 'center',
     
     color: '#2E2E41',   
+  },
+  account2: {
+    position: 'absolute',
+    left: 155,
+    top: 345,
+    
+    // fontFamily: 'Baloo 2',
+    // fontStyle: 'normal',
+    // fontWeight: 400,
+    fontSize: 18,
+    fontWeight: 'bold', 
+    textDecorationLine: 'underline',
+    
+    color: '#0E7979',   
   },
 });
