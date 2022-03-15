@@ -64,6 +64,9 @@
        screenOptions={{
          tabBarActiveTintColor: Colors[colorScheme].tint,
          tabBarIconStyle: { display: "none" },
+         tabBarLabelStyle: {
+          fontSize: 20,
+        },
        }}>
      
        <BottomTab.Screen
@@ -72,6 +75,7 @@
          options={({ navigation }: RootTabScreenProps<'SignIn'>) => ({
            title: 'Sign in',
            headerShown: false,
+           
            // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
            headerRight: () => (
              <Pressable
@@ -79,12 +83,12 @@
                style={({ pressed }) => ({
                  opacity: pressed ? 0.5 : 1,
                })}>
-               <FontAwesome
+               {/* <FontAwesome
                  name="info-circle"
                  size={25}
                  color={Colors[colorScheme].text}
                  style={{ marginRight: 15 }}
-               />
+               /> */}
              </Pressable>
            ),
          })}
@@ -105,10 +109,10 @@
  /**
   * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
   */
- function TabBarIcon(props: {
-   name: React.ComponentProps<typeof FontAwesome>['name'];
-   color: string;
- }) {
-   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
- }
+//  function TabBarIcon(props: {
+//    name: React.ComponentProps<typeof FontAwesome>['name'];
+//    color: string;
+//  }) {
+//    return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+//  }
  

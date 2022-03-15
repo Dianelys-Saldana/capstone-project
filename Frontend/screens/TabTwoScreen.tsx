@@ -14,16 +14,16 @@ export default function TabTwoScreen() {
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
       <Text style={styles.title}>Create Account</Text>
       
-      <Image style={styles.avatar} source={require('../assets/images/email.png')}/>
+      <Image style={styles.avatar} source={require('../assets/images/name.png')}/>
       <TextInput style={styles.name} placeholder={'Name'}></TextInput>
 
-      <Image style={styles.phoneIcon} source={require('../assets/images/email.png')}/>
+      <Image style={styles.phoneIcon} source={require('../assets/images/phone.png')}/>
       <TextInput style={styles.phone} placeholder={'Phone'}></TextInput>
 
       <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
       <TextInput style={styles.email} placeholder={'Email'}></TextInput>
       
-      <Image style={styles.userIcon} source={require('../assets/images/email.png')}/>
+      <Image style={styles.userIcon} source={require('../assets/images/user.png')}/>
       <SelectDropdown
         data={users}
         // defaultValueByIndex={1}
@@ -244,8 +244,8 @@ const styles = StyleSheet.create({
   },
   phoneIcon:{
     position: 'absolute',
-    width: 37,
-    height: 37,
+    width: 40,
+    height: 40,
     left: 40,
     top: 260,
   },
@@ -290,8 +290,10 @@ const styles = StyleSheet.create({
     borderColor: '#0E7979',
   },
   dropdown1BtnTxtStyle: { 
-    color: 'grey', 
-    textAlign: "left", 
+    color: '#9dabac', 
+    textAlign: "left",
+    left: 4,
+    fontSize: 20,
   },
   dropdown1DropdownStyle: { 
     backgroundColor: "#EFEFEF" 
