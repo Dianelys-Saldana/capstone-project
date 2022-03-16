@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, TextInput, Button, Pressable} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -9,14 +9,24 @@ import SelectDropdown from 'react-native-select-dropdown'
 
 const users = ["Patient", "Service Provider"]
 
+// const [uFirstName, setName] = useState('');
+// const [uLastName, setLastName] = useState('');
+// const [phone, setPhone] = useState('');
+// const [uEmail, setEmail] = useState('');
+// const [uPassword, setPass] = useState('');
+// const [userType, setuType] = useState('');
+
 export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'>) {
   return (
     <View style={styles.container}>
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
-      <Text style={styles.title}>Create Account</Text>
+      <Text style={styles.createAcc}>Create Account</Text>
       
       <Image style={styles.avatar} source={require('../assets/images/name.png')}/>
-      <TextInput style={styles.name} placeholder={'Name'}></TextInput>
+      <TextInput style={styles.firstName} placeholder={'First Name'}></TextInput>
+
+      <Image style={styles.avatar2} source={require('../assets/images/name.png')}/>
+      <TextInput style={styles.lastName} placeholder={'Last Name'}></TextInput>
 
       <Image style={styles.phoneIcon} source={require('../assets/images/phone.png')}/>
       <TextInput style={styles.phone} placeholder={'Phone'}></TextInput>
@@ -53,7 +63,12 @@ export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'
       <TextInput style={styles.confpass} placeholder={'Confirm Password'}></TextInput>
       
       <Pressable style={styles.signup} onPress={() => {alert('Welcome!');}}>
-        <Text style={styles.text}>Sign up</Text>
+        <Text style={styles.signuptext}>Sign up</Text>
+      </Pressable>
+
+      <Pressable onPress={() => navigation.navigate('SignUp')}> 
+        <Text style={styles.account}>Already have an account? </Text>
+        <Text style={styles.login}>Login</Text>
       </Pressable>
       
       <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
@@ -68,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#C0DEDD',
   },
-  title: {
+  createAcc: {
     // fontSize: 20,
     // fontWeight: 'bold',
 
@@ -89,6 +104,62 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: '80%',
+  },
+  firstName:{
+    position: 'absolute',
+    width: 268,
+    height: 48,
+    left: 86,
+    top: 191,
+    
+    // fontFamily: 'Baloo 2',
+    // fontStyle: 'normal',
+    // fontWeight: 'bold',
+    fontSize: 20,
+    display: 'flex',
+    alignItems: 'center',
+    
+    color: '#0E7979',
+
+    borderWidth: 2.5,
+    padding: 10,
+    borderRadius: 8,
+    borderColor: '#0E7979',
+  },
+  lastName:{
+    position: 'absolute',
+    width: 268,
+    height: 48,
+    left: 86,
+    top: 255,
+    
+    // fontFamily: 'Baloo 2',
+    // fontStyle: 'normal',
+    // fontWeight: 'bold',
+    fontSize: 20,
+    display: 'flex',
+    alignItems: 'center',
+    
+    color: '#0E7979',
+
+    borderWidth: 2.5,
+    padding: 10,
+    borderRadius: 8,
+    borderColor: '#0E7979',
+  },
+  avatar: {
+    position: 'absolute',
+    width: 37,
+    height: 37,
+    left: 40,
+    top: 196,
+  },
+  avatar2: {
+    position: 'absolute',
+    width: 37,
+    height: 37,
+    left: 40,
+    top: 260,
   },
   emailIcon: {
     position: 'absolute',
@@ -118,19 +189,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: '#0E7979',
   },
-  passIcon: {
-    position: 'absolute',
-    width: 37,
-    height: 37,
-    left: 40,
-    top: 455,
-  },
-  pass: {
+  phone:{
     position: 'absolute',
     width: 268,
     height: 48,
     left: 86,
-    top: 443,
+    top: 381,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
@@ -146,16 +210,115 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: '#0E7979',
   },
+  phoneIcon:{
+    position: 'absolute',
+    width: 40,
+    height: 40,
+    left: 40,
+    top: 387,
+  },
+  dropdown1BtnStyle: {
+    position: 'absolute',
+    width: 268,
+    height: 48,
+    left: 86,
+    top: 443,
+
+    backgroundColor: '#C0DEDD',
+    borderRadius: 8,
+    borderWidth: 2.5,
+    borderColor: '#0E7979',
+  },
+  dropdown1BtnTxtStyle: { 
+    color: '#9dabac', 
+    textAlign: "left",
+    left: 4,
+    fontSize: 20,
+  },
+  dropdown1DropdownStyle: { 
+    backgroundColor: "#EFEFEF" 
+  },
+  dropdown1RowStyle: {
+    backgroundColor: "#EFEFEF",
+    borderBottomColor: "#C5C5C5",
+  },
+  dropdown1RowTxtStyle: { 
+    color: "#444", 
+    textAlign: "left" 
+  },
+  userIcon:{
+    position: 'absolute',
+    width: 37,
+    height: 37,
+    left: 40,
+    top: 448,
+  },
+  passIcon: {
+    position: 'absolute',
+    width: 37,
+    height: 37,
+    left: 40,
+    top: 512,
+  },
+  pass: {
+    position: 'absolute',
+    width: 268,
+    height: 48,
+    left: 86,
+    top: 507,
+    
+    // fontFamily: 'Baloo 2',
+    // fontStyle: 'normal',
+    // fontWeight: 'bold',
+    fontSize: 20,
+    display: 'flex',
+    alignItems: 'center',
+    
+    color: '#0E7979',
+
+    borderWidth: 2.5,
+    padding: 10,
+    borderRadius: 8,
+    borderColor: '#0E7979',
+  },
+  confpass:{
+    position: 'absolute',
+    width: 268,
+    height: 48,
+    left: 86,
+    top: 571,
+    
+    // fontFamily: 'Baloo 2',
+    // fontStyle: 'normal',
+    // fontWeight: 'bold',
+    fontSize: 20,
+    display: 'flex',
+    alignItems: 'center',
+    
+    color: '#0E7979',
+
+    borderWidth: 2.5,
+    padding: 10,
+    borderRadius: 8,
+    borderColor: '#0E7979',
+  },
+  confpassIcon: {
+    position: 'absolute',
+    width: 37,
+    height: 37,
+    left: 40,
+    top: 576,
+  },
   signup: {
     position: 'absolute',
     width: 194,
     height: 50.57,
     left: 115,
-    top: 621,
+    top: 650,
     backgroundColor: '#22A7A7',
     borderRadius: 30,
   },
-  text: {
+  signuptext: {
     position: 'absolute',
     width: 80,
     height: 45,
@@ -191,126 +354,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     
     color: '#2E2E41',   
-  },
-  name:{
-    position: 'absolute',
-    width: 268,
-    height: 48,
-    left: 86,
-    top: 191,
-    
-    // fontFamily: 'Baloo 2',
-    // fontStyle: 'normal',
-    // fontWeight: 'bold',
-    fontSize: 20,
-    display: 'flex',
-    alignItems: 'center',
-    
-    color: '#0E7979',
-
-    borderWidth: 2.5,
-    padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
-  },
-  avatar: {
-    position: 'absolute',
-    width: 37,
-    height: 37,
-    left: 40,
-    top: 196,
-  },
-  phone:{
-    position: 'absolute',
-    width: 268,
-    height: 48,
-    left: 86,
-    top: 255,
-    
-    // fontFamily: 'Baloo 2',
-    // fontStyle: 'normal',
-    // fontWeight: 'bold',
-    fontSize: 20,
-    display: 'flex',
-    alignItems: 'center',
-    
-    color: '#0E7979',
-
-    borderWidth: 2.5,
-    padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
-  },
-  phoneIcon:{
-    position: 'absolute',
-    width: 40,
-    height: 40,
-    left: 40,
-    top: 260,
-  },
-  confpass:{
-    position: 'absolute',
-    width: 268,
-    height: 48,
-    left: 86,
-    top: 507,
-    
-    // fontFamily: 'Baloo 2',
-    // fontStyle: 'normal',
-    // fontWeight: 'bold',
-    fontSize: 20,
-    display: 'flex',
-    alignItems: 'center',
-    
-    color: '#0E7979',
-
-    borderWidth: 2.5,
-    padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
-  },
-  confpassIcon: {
-    position: 'absolute',
-    width: 37,
-    height: 37,
-    left: 40,
-    top: 512,
-  },
-  dropdown1BtnStyle: {
-    position: 'absolute',
-    width: 268,
-    height: 48,
-    left: 86,
-    top: 381,
-
-    backgroundColor: '#C0DEDD',
-    borderRadius: 8,
-    borderWidth: 2.5,
-    borderColor: '#0E7979',
-  },
-  dropdown1BtnTxtStyle: { 
-    color: '#9dabac', 
-    textAlign: "left",
-    left: 4,
-    fontSize: 20,
-  },
-  dropdown1DropdownStyle: { 
-    backgroundColor: "#EFEFEF" 
-  },
-  dropdown1RowStyle: {
-    backgroundColor: "#EFEFEF",
-    borderBottomColor: "#C5C5C5",
-  },
-  dropdown1RowTxtStyle: { 
-    color: "#444", 
-    textAlign: "left" 
-  },
-  userIcon:{
-    position: 'absolute',
-    width: 37,
-    height: 37,
-    left: 40,
-    top: 387,
   },
   login: {
     // position: 'absolute',
