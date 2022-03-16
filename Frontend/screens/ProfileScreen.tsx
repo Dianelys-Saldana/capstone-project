@@ -4,7 +4,7 @@ import { Image, StyleSheet, TextInput, Button, Pressable} from 'react-native';
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
-export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) {
+export default function Profile({ navigation }: RootTabScreenProps<'SignIn'>) {
   return (
     <View style={styles.container}> 
         <View style={[styles.box,{position: 'absolute'}]}> 

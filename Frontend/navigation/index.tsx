@@ -17,6 +17,7 @@
  import TabOneScreen from '../screens/TabOneScreen';
  import TabTwoScreen from '../screens/TabTwoScreen';
  import Dashboard from '../screens/Dashboard';
+ import Profile from '../screens/ProfileScreen';
  import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
  import LinkingConfiguration from './LinkingConfiguration';
  
@@ -106,7 +107,51 @@
      </BottomTab.Navigator>
    );
  }
+
+
+ /**
+  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
+  * https://reactnavigation.org/docs/bottom-tab-navigator
+  */
+  // const BottomTabPrincipal = createBottomTabNavigator<RootTabParamList>();
  
+  // function BottomTabNavigatorPrincipal() {
+  //   const colorScheme = useColorScheme();
+  //     return(
+  //       <BottomTab.Navigator
+  //         initialRouteName="Dashboard"
+  //         screenOptions={{
+  //         tabBarActiveTintColor: Colors[colorScheme].tint,
+  //         tabBarIconStyle: { display: "none" },
+  //         tabBarLabelStyle: {
+  //         fontSize: 20,
+  //         fontWeight: 'bold',
+  //         },
+  //       }}>
+  //         <BottomTab.Screen
+  //           name="Profile"
+  //           component={Profile}
+  //           options={({ navigation }: RootTabScreenProps<'Profile'>) => ({
+  //           title: 'Profile',
+  //           headerShown: false,
+            
+  //           // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+  //           headerRight: () => (
+  //             <Pressable
+  //               onPress={() => navigation.navigate('Modal')}
+  //               style={({ pressed }) => ({
+  //                 opacity: pressed ? 0.5 : 1,
+  //               })}>
+  //             </Pressable>
+  //           ),
+  //           })}
+  //         />
+
+  //       </BottomTab.Navigator>
+  //     );
+  // }
+
+
  /**
   * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
   */

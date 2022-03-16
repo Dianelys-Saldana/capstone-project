@@ -55,13 +55,6 @@ export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'
       <Pressable style={styles.signup} onPress={() => {alert('Welcome!');}}>
         <Text style={styles.text}>Sign up</Text>
       </Pressable>
-
-      {/* <Text style={styles.account}>Already have an account? Login</Text> */}
-
-      <Pressable onPress={() => navigation.navigate('SignIn')}> 
-        <Text style={styles.account}>Already have an account? </Text>
-        <Text style={styles.login}>Login</Text>
-      </Pressable>
       
       <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
     </View>
