@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, TextInput, Button, Pressable} from 'react-native';
+import { Image, StyleSheet, TextInput, Button, Pressable, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -7,16 +7,19 @@ import { RootTabScreenProps } from '../types';
 
 import SelectDropdown from 'react-native-select-dropdown'
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Ionicons } from "@expo/vector-icons";
+
 const users = ["Patient", "Service Provider"]
 
-// const [uFirstName, setName] = useState('');
-// const [uLastName, setLastName] = useState('');
-// const [phone, setPhone] = useState('');
-// const [uEmail, setEmail] = useState('');
-// const [uPassword, setPass] = useState('');
-// const [userType, setuType] = useState('');
-
 export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'>) {
+  const [uFirstName, setName] = useState('');
+  const [uLastName, setLastName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [uEmail, setEmail] = useState('');
+  const [uPassword, setPass] = useState('');
+  const [userType, setuType] = useState('');
+
   return (
     <View style={styles.container}>
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
@@ -29,7 +32,7 @@ export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'
       <TextInput style={styles.lastName} placeholder={'Last Name'}></TextInput>
 
       <Image style={styles.phoneIcon} source={require('../assets/images/phone.png')}/>
-      <TextInput style={styles.phone} placeholder={'Phone'}></TextInput>
+      <TextInput style={styles.phone} placeholder={'Phone'} keyboardType='phone-pad'></TextInput>
 
       <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
       <TextInput style={styles.email} placeholder={'Email'}></TextInput>
@@ -57,16 +60,25 @@ export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'
       />
 
       <Image style={styles.passIcon} source={require('../assets/images/pass.png')}/>
-      <TextInput style={styles.pass} placeholder={'Password'}></TextInput>
+      <TextInput 
+        style={styles.pass} 
+        placeholder={'Password'} 
+        secureTextEntry 
+        // value={uPassword}
+      ></TextInput>
       
       <Image style={styles.confpassIcon} source={require('../assets/images/pass.png')}/>
-      <TextInput style={styles.confpass} placeholder={'Confirm Password'}></TextInput>
+      <TextInput 
+        style={styles.confpass} 
+        placeholder={'Confirm Password'} 
+        secureTextEntry
+      ></TextInput>
       
       <Pressable style={styles.signup} onPress={() => {alert('Welcome!');}}>
         <Text style={styles.signuptext}>Sign up</Text>
       </Pressable>
 
-      <Pressable onPress={() => navigation.navigate('SignUp')}> 
+      <Pressable onPress={() => navigation.navigate('SignIn')}> 
         <Text style={styles.account}>Already have an account? </Text>
         <Text style={styles.login}>Login</Text>
       </Pressable>
@@ -91,7 +103,7 @@ const styles = StyleSheet.create({
     width: 374,
     height: 91,
     left: -31,
-    top: 96,
+    top: 81,
     // fontFamily: 'Alata',
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -110,7 +122,7 @@ const styles = StyleSheet.create({
     width: 268,
     height: 48,
     left: 86,
-    top: 191,
+    top: 156,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
@@ -131,7 +143,7 @@ const styles = StyleSheet.create({
     width: 268,
     height: 48,
     left: 86,
-    top: 255,
+    top: 220,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
@@ -152,28 +164,28 @@ const styles = StyleSheet.create({
     width: 37,
     height: 37,
     left: 40,
-    top: 196,
+    top: 163,
   },
   avatar2: {
     position: 'absolute',
     width: 37,
     height: 37,
     left: 40,
-    top: 260,
+    top: 225,
   },
   emailIcon: {
     position: 'absolute',
     width: 37,
     height: 37,
     left: 40,
-    top: 324,
+    top: 289,
   },
   email: {
     position: 'absolute',
     width: 268,
     height: 48,
     left: 86,
-    top: 319,
+    top: 284,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
@@ -194,7 +206,7 @@ const styles = StyleSheet.create({
     width: 268,
     height: 48,
     left: 86,
-    top: 381,
+    top: 346,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
@@ -215,14 +227,14 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     left: 40,
-    top: 387,
+    top: 350,
   },
   dropdown1BtnStyle: {
     position: 'absolute',
     width: 268,
     height: 48,
     left: 86,
-    top: 443,
+    top: 408,
 
     backgroundColor: '#C0DEDD',
     borderRadius: 8,
@@ -251,21 +263,21 @@ const styles = StyleSheet.create({
     width: 37,
     height: 37,
     left: 40,
-    top: 448,
+    top: 413,
   },
   passIcon: {
     position: 'absolute',
     width: 37,
     height: 37,
     left: 40,
-    top: 512,
+    top: 477,
   },
   pass: {
     position: 'absolute',
     width: 268,
     height: 48,
     left: 86,
-    top: 507,
+    top: 472,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
@@ -286,7 +298,7 @@ const styles = StyleSheet.create({
     width: 268,
     height: 48,
     left: 86,
-    top: 571,
+    top: 536,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
@@ -307,14 +319,14 @@ const styles = StyleSheet.create({
     width: 37,
     height: 37,
     left: 40,
-    top: 576,
+    top: 541,
   },
   signup: {
     position: 'absolute',
     width: 194,
     height: 50.57,
     left: 115,
-    top: 650,
+    top: 628,
     backgroundColor: '#22A7A7',
     borderRadius: 30,
   },

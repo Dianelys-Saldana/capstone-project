@@ -10,23 +10,27 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'SignIn'
   return (
     <View style={styles.container}>
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
-      <Image style={styles.welcome} source={require('../assets/images/welcome.png')}/>
-      <Text style={styles.title}>Welcome Back!</Text>
+      <Image style={styles.welcomeImg} source={require('../assets/images/welcome.png')}/>
+      <Text style={styles.welcome}>Welcome Back!</Text>
 
       <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
       <TextInput style={styles.email} placeholder={'Email'}></TextInput>
       
       <Image style={styles.passIcon} source={require('../assets/images/pass.png')}/>
-      <TextInput style={styles.pass} placeholder={'Password'}></TextInput>
+      <TextInput 
+        style={styles.pass} 
+        placeholder={'Password'}
+        secureTextEntry 
+      ></TextInput>
       <Text style={styles.forgot}>Forgot Password?</Text>
       
-      <Pressable style={styles.login} onPress={() => navigation.navigate('Dashboard')}> 
-        <Text style={styles.text}>Login</Text>
+      <Pressable style={styles.loginBtn} onPress={() => navigation.navigate('Dashboard')}> 
+        <Text style={styles.loginText}>Login</Text>
       </Pressable>
 
       <Pressable onPress={() => navigation.navigate('SignUp')}> 
         <Text style={styles.account}>Don't have an account? </Text>
-        <Text style={styles.account2}>Sign up!</Text>
+        <Text style={styles.signUp}>Sign up!</Text>
       </Pressable>
 
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />
@@ -41,7 +45,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#C0DEDD',
   },
-  title: {
+  welcomeImg: {
+    position: 'absolute',
+    width: 414,
+    height: 350,
+    left: -1,
+    top: 45,
+  },
+  welcome: {
     // fontSize: 20,
     // fontWeight: 'bold',
 
@@ -50,7 +61,7 @@ const styles = StyleSheet.create({
     width: 374,
     height: 91,
     left: -31,
-    top: 415,
+    top: 410,
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 36,
@@ -63,26 +74,19 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
-  welcome: {
-    position: 'absolute',
-    width: 414,
-    height: 350,
-    left: -1,
-    top: 45,
-  },
   emailIcon: {
     position: 'absolute',
     width: 35,
     height: 35,
     left: 40,
-    top: 500,
+    top: 490,
   },
   email: {
     position: 'absolute',
     width: 268,
     height: 48,
     left: 86,
-    top: 493,
+    top: 483,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
@@ -103,14 +107,14 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     left: 37,
-    top: 560,
+    top: 550,
   },
   pass: {
     position: 'absolute',
     width: 268,
     height: 48,
     left: 86,
-    top: 556,
+    top: 546,
     
     // fontFamily: 'Baloo 2',
     // fontStyle: 'normal',
@@ -142,7 +146,7 @@ const styles = StyleSheet.create({
 
     color: '#2E2E41',
   },
-  login: {
+  loginBtn: {
     position: 'absolute',
     width: 194,
     height: 50.57,
@@ -151,7 +155,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#22A7A7',
     borderRadius: 30,
   },
-  text: {
+  loginText: {
     position: 'absolute',
     width: 80,
     height: 45,
@@ -181,7 +185,7 @@ const styles = StyleSheet.create({
     
     color: '#2E2E41',   
   },
-  account2: {
+  signUp: {
     position: 'absolute',
     left: 155,
     top: 345,
