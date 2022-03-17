@@ -2,8 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19000,
-  "webpackServerPort": 19006,
-  "expoServerNgrokUrl": "https://ep-gyv.anonymous.frontend.exp.direct",
-  "packagerNgrokUrl": "https://ep-gyv.anonymous.frontend.exp.direct",
-  "ngrokPid": 17076
+  "webpackServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "packagerPid": null
 }
