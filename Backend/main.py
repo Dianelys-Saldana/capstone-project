@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from flask import request
-from Backend.controller.users import BaseUsers
+from controller.users import BaseUsers
 
 app = FastAPI()
 

@@ -1,6 +1,6 @@
-from Backend.config.dbconfig import pg_config
+from config.dbconfig import pg_config
 import psycopg2
-from Backend.model.user import UsersDAO
+from model.user import UsersDAO
 from fastapi.encoders import jsonable_encoder as jsonify
 
 class BaseUsers:
