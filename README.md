@@ -12,3 +12,9 @@
 3. pip install -r requirements.txt
 4. cd Backend
 5. uvicorn main:app --reload
+
+## Video Walkthrough 
+
+Here's a walkthrough of the App implementation:
+
+<img src='http://g.recordit.co/Ds8GOvAybj.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
