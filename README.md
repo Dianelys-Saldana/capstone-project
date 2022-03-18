@@ -13,7 +13,7 @@
 4. cd Backend
 5. uvicorn main:app --reload
 
-## Video Walkthrough 
+## Video Walkthrough: 
 
 Here's a walkthrough of the App implementation:
 
