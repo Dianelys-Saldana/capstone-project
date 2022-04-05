@@ -11,7 +11,7 @@
 2. pip install "uvicorn[standard]"
 3. pip install -r requirements.txt
 4. cd Backend
-5. uvicorn main:app --reload
+5. python -m uvicorn main:app --reload
 
 ## Video Walkthrough: 
 
