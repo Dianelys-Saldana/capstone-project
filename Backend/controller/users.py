@@ -20,13 +20,7 @@ class BaseUsers:
         }
         return result
 
-    def createUser(self, json):
-        uFirstName = json["uFirstName"]
-        uLastName = json["uLastName"]
-        uEmail = json["uEmail"]
-        uPassword = json['uPassword']
-        usertype = json['usertype']
-        phone = json['phone']
+    def createUser(self, uFirstName, uLastName, uEmail, uPassword, usertype, phone):
         dao = UsersDAO()
         checkUser = dao.getUserInfo(uEmail)
         if checkUser is None:
@@ -39,13 +33,12 @@ class BaseUsers:
         else:
             return jsonify("Error"), 401
     
-    def login(self, json):
-        uEmail = json["uEmail"]
-        uPassword = json['uPassword']
+    def login(self, uEmail, uPassword):
         dao = UsersDAO()
         user = dao.getUserInfo(uEmail)
+        print("HELLLLLLOOOOO",user)
         if user:    
-            check = user[0][4]
+            check = user
             if check==uPassword:
                 return jsonify({
                     'status' : "Success",

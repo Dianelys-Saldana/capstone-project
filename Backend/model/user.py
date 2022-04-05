@@ -1,4 +1,5 @@
 from config.dbconfig import pg_config
+from fastapi.encoders import jsonable_encoder as jsonify
 import psycopg2
 
 class UsersDAO:
@@ -6,7 +7,7 @@ class UsersDAO:
         connection_url = "dbname=%s user=%s password=%s port=%s host=%s" % (pg_config["database"], pg_config["username"], pg_config["password"], pg_config["port"], pg_config["host"])
         self.conn = psycopg2.connect(connection_url)
     
-    def createUser(self, uFirstName, uLastName, uEmail, uPassword, usertype, phone):
+    async def createUser(self, uFirstName, uLastName, uEmail, uPassword, usertype, phone):
         cursor = self.conn.cursor()
         query = "insert into users (email, password, uFirstName, uLastName, usertype) values (%s,%s,%s,%s,%s) returning userId;"
         cursor.execute(query, (uFirstName, uLastName, uEmail, uPassword, usertype, phone))
@@ -17,6 +18,6 @@ class UsersDAO:
     
     def getUserInfo(self, email):
         cursor = self.conn.cursor()
-        query = "select userId, email, password, uFirstName, uLastName, usertype, phone from users where email = %s;"
+        query = "select * from users where email = %s;"
         result = cursor.execute(query, (email,))
-        return result
+        return jsonify(result)
