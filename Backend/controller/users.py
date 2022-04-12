@@ -25,18 +25,17 @@ class BaseUsers:
         checkUser = dao.getUserInfo(uEmail)
         if checkUser is None:
             uId = dao.createUser(uFirstName, uLastName, uEmail, uPassword, usertype, phone)
-            result = self.build_row_dict((uId,uFirstName, uLastName, uEmail, usertype, phone))
+            result = self.build_row_dict((uId,uFirstName, uLastName, uEmail, uPassword, usertype, phone))
             return jsonify({
                     'status' : "Success",
                     'body': result
-                })
+            })
         else:
             return jsonify("Error"), 401
     
     def login(self, uEmail, uPassword):
         dao = UsersDAO()
         user = dao.getUserInfo(uEmail)
-        print("HELLLLLLOOOOO",user)
         if user:    
             check = user
             if check==uPassword:
@@ -57,3 +56,8 @@ class BaseUsers:
                     'status' : "Error",
                     'message': 'Wrong email or password '
                 }), 404
+
+    def delete(self, uEmail, confirm):
+        dao = UsersDAO
+        user = dao.getUserInfo(uEmail)
+        
