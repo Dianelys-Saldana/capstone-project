@@ -32,7 +32,7 @@ async def login(user: UserLogin):
 @app.post("/signup", tags=["MediFast"])
 async def signup(user: User):
     BaseUsers().createUser(user.uFirstName, user.uLastName, user.uEmail, user.uPassword, user.usertype, user.phone)
-    return "YEY"
+    return {"message" : "Accoutn Created"}
 
 @app.put("/editprofile", tags=["MediFast"])
 async def editProfile():
