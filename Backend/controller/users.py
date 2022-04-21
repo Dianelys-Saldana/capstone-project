@@ -8,7 +8,7 @@ class BaseUsers:
         connection_url = "dbname=%s user=%s password=%s port=%s host=%s" % (pg_config["database"], pg_config["username"], pg_config["password"], pg_config["port"], pg_config["host"])
         self.conn = psycopg2.connect(connection_url)
 
-    def build_row_dict(self, row):
+    async def build_row_dict(self, row):
         result = {
             "userId" : row[0],
             "email" : row[1],
@@ -16,16 +16,16 @@ class BaseUsers:
             "uFirstName" : row[3],
             "uLastName" : row[4],
             "usertype" : row[5],
-            "phone" : row[6]
+            "phone" : row[6],
         }
         return result
 
-    def createUser(self, uFirstName, uLastName, uEmail, uPassword, usertype, phone):
+    async def createUser(self, uFirstName, uLastName, uEmail, uPassword, usertype, phone):
         dao = UsersDAO()
         checkUser = dao.getUserInfo(uEmail)
         if checkUser is None:
             uId = dao.createUser(uFirstName, uLastName, uEmail, uPassword, usertype, phone)
-            result = self.build_row_dict((uId,uFirstName, uLastName, uEmail, usertype, phone))
+            result = self.build_row_dict((uId,uEmail, uPassword, uFirstName, uLastName, usertype, phone))
             return jsonify({
                     'status' : "Success",
                     'body': result

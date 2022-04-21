@@ -14,8 +14,8 @@
  import useColorScheme from '../hooks/useColorScheme';
  import ModalScreen from '../screens/ModalScreen';
  import NotFoundScreen from '../screens/NotFoundScreen';
- import TabOneScreen from '../screens/TabOneScreen';
- import TabTwoScreen from '../screens/TabTwoScreen';
+ import TabOneScreen from '../screens/Login';
+ import TabTwoScreen from '../screens/SignUp';
  import Dashboard from '../screens/Dashboard';
  import Profile from '../screens/ProfileScreen';
  import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
