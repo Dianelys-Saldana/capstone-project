@@ -1,5 +1,8 @@
+from crypt import methods
 from fastapi import FastAPI
 from pydantic import BaseModel
+from requests import request
+import requests
 # from flask import request
 from controller.users import BaseUsers
 
@@ -41,3 +44,8 @@ async def editProfile():
 @app.delete("/deleteprofile", tags=["MediFast"])
 async def delete():
     return {"message" : "Delete"}
+
+# @app.route("/appointments", methods=['GET', 'POST', 'PUT'], tags=["MediFast"])
+# def handleAppointments(aid):
+#     if requests.
+#         return BaseUsers.
