@@ -18,6 +18,7 @@
    Modal: undefined;
    NotFound: undefined;
    Dashboard: undefined;
+   Specialty: undefined;
  };
  
  export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

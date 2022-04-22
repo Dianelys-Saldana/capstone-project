@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, TextInput, Button, Pressable} from 'react-native';
+import EditScreenInfo from '../components/EditScreenInfo';
 
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -11,50 +12,50 @@ export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) 
             <Text style={styles.medicalSpec}>Medical Specialties</Text>
             <Text style={styles.see}>See all</Text>
 
-            <View style={[styles.specBox,{position: 'absolute'}]}>
+            <Pressable style={[styles.specBox,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.cardio}>Cardiology</Text>
                 <Image style={styles.cardioIcon} source={require('../assets/images/cardio.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.specBox2,{position: 'absolute'}]}>
+            <Pressable style={[styles.specBox2,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.derma}>Dermatology</Text>
                 <Image style={styles.dermaIcon} source={require('../assets/images/derma.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.specBox3,{position: 'absolute'}]}>
+            <Pressable style={[styles.specBox3,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.gyn}>Gynecology</Text>
                 <Image style={styles.gynIcon} source={require('../assets/images/gyn.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.specBox4,{position: 'absolute'}]}>
+            <Pressable style={[styles.specBox4,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.neuro}>Neurology</Text>
                 <Image style={styles.neuroIcon} source={require('../assets/images/neuro.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.specBox5,{position: 'absolute'}]}>
+            <Pressable style={[styles.specBox5,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.ofta}>Ophthalmology</Text>
                 <Image style={styles.oftaIcon} source={require('../assets/images/ofta.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.specBox6,{position: 'absolute'}]}>
+            <Pressable style={[styles.specBox6,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.pedi}>Pediatrics</Text>
                 <Image style={styles.pediIcon} source={require('../assets/images/pedi.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.specBox7,{position: 'absolute'}]}>
+            <Pressable style={[styles.specBox7,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.psi}>Psychology</Text>
                 <Image style={styles.psiIcon} source={require('../assets/images/psi.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.specBox8,{position: 'absolute'}]}>
+            <Pressable style={[styles.specBox8,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.psy}>Psychiatry</Text>
                 <Image style={styles.psyIcon} source={require('../assets/images/psy.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.specBox9,{position: 'absolute'}]}>
+            <Pressable style={[styles.specBox9,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.uro}>Urology</Text>
                 <Image style={styles.uroIcon} source={require('../assets/images/uro.png')}/>
-            </View>
+            </Pressable>
 
         </View>
 
@@ -62,38 +63,38 @@ export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) 
             <Text style={styles.wellSpec}>Wellness and Other Services</Text>
             <Text style={styles.see2}>See all</Text>
 
-            <View style={[styles.wellBox,{position: 'absolute'}]}>
+            <Pressable style={[styles.wellBox,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.chiro}>Chiropractic</Text>
                 <Image style={styles.chiroIcon} source={require('../assets/images/chiro.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.wellBox2,{position: 'absolute'}]}>
+            <Pressable style={[styles.wellBox2,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.massage}>Massaging</Text>
                 <Image style={styles.massageIcon} source={require('../assets/images/massage.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.wellBox3,{position: 'absolute'}]}>
+            <Pressable style={[styles.wellBox3,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.pt}>Personal Training</Text>
                 <Image style={styles.ptIcon} source={require('../assets/images/pt.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.wellBox4,{position: 'absolute'}]}>
+            <Pressable style={[styles.wellBox4,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.hn}>Home Nurse</Text>
                 <Image style={styles.hnIcon} source={require('../assets/images/hn.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.wellBox5,{position: 'absolute'}]}>
+            <Pressable style={[styles.wellBox5,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.wl}>Weight Loss</Text>
                 <Image style={styles.wlIcon} source={require('../assets/images/wl.png')}/>
-            </View>
+            </Pressable>
 
-            <View style={[styles.wellBox6,{position: 'absolute'}]}>
+            <Pressable style={[styles.wellBox6,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.add}>Add</Text>
                 <Image style={styles.addIcon} source={require('../assets/images/add.png')}/>
-            </View>
+            </Pressable>
 
         </View>
-
+        <EditScreenInfo path="/screens/Dashboard.tsx" />
     </View>
   );
 }

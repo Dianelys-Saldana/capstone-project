@@ -14,12 +14,13 @@
  import useColorScheme from '../hooks/useColorScheme';
  import ModalScreen from '../screens/ModalScreen';
  import NotFoundScreen from '../screens/NotFoundScreen';
- import TabOneScreen from '../screens/Login';
- import TabTwoScreen from '../screens/SignUp';
+ import LoginScreen from '../screens/LoginScreen';
+ import SignUpScreen from '../screens/SignUpScreen';
  import Dashboard from '../screens/Dashboard';
  import Profile from '../screens/ProfileScreen';
  import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
  import LinkingConfiguration from './LinkingConfiguration';
+import Specialty from '../screens/SpecialtyScreen';
  
  export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
    return (
@@ -46,6 +47,7 @@
          <Stack.Screen name="Modal" component={ModalScreen} />
        </Stack.Group>
        <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
+       <Stack.Screen name="Specialty" component={Specialty} options={{ headerShown: false }} />
      </Stack.Navigator>
    );
  }
@@ -73,7 +75,7 @@
      
        <BottomTab.Screen
          name="SignIn"
-         component={TabOneScreen}
+         component={LoginScreen}
          options={({ navigation }: RootTabScreenProps<'SignIn'>) => ({
            title: 'Sign in',
            headerShown: false,
@@ -97,7 +99,7 @@
        />
        <BottomTab.Screen
          name="SignUp"
-         component={TabTwoScreen}
+         component={SignUpScreen}
          options={{
            title: 'Sign up',
            headerShown: false,

@@ -11,7 +11,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Ionicons } from "@expo/vector-icons";
 import { emailValidator, passwordValidator, nameValidator, lastNameValidator} from '../core/utils';
 
-export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'>) {
+export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'>) {
   const [uFirstName, setName] = useState('');
   const [uLastName, setLastName] = useState('');
   const [uEmail, setEmail] = useState('');
@@ -96,7 +96,6 @@ export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'
           onChangeText={text => setPhone(text)}
           // returnKeyType="next"
           > 
-          {/* onChange={handleChange} */}
         </TextInput>
       
       <Image style={styles.userIcon} source={require('../assets/images/user.png')}/>
