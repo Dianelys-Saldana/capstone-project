@@ -28,7 +28,6 @@ function signup(data: any){
         body: data
     };
     return fetch(url+"/signup", req).then(response => response.json());
-
 }
 function editProfile(data: any){
     const req = {
@@ -86,3 +85,4 @@ function manageAppointments(data: any){
     };
     return fetch(url+"/prof/appointments", req).then(response => response.json());
 }
+
