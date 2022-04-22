@@ -1,85 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { Image, StyleSheet, TextInput, Button, Pressable, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+import { Image, StyleSheet, TextInput, Pressable, Button, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+import SelectDropdown from 'react-native-select-dropdown'
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
-import SelectDropdown from 'react-native-select-dropdown'
+
 import Server from '../services/serverRoutes';
 import Auth from '../services/authentication';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Ionicons } from "@expo/vector-icons";
 import { emailValidator, passwordValidator, nameValidator, lastNameValidator} from '../core/utils';
-const users = ["Patient", "Service Provider"]
 
 export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'>) {
-  const [uFirstName, setName] = useState({ value: '', error: '' });
-  const [uLastName, setLastName] = useState({ value: '', error: '' });
-  const [uEmail, setEmail] = useState({ value: '', error: '' });
-  const [uPassword, setPassword] = useState({ value: '', error: '' });
-  const [usertype, setUserType] = useState({ value: '', error: '' });
-  const [phone, setPhone] = useState({ value: '', error: '' });
-  const [confirmPassword, setConfirmPassword] = useState({ value: '', error: '' });
+  const [uFirstName, setName] = useState('');
+  const [uLastName, setLastName] = useState('');
+  const [uEmail, setEmail] = useState('');
+  const [uPassword, setPassword] = useState('');
+  const [usertype, setUserType] = useState('');
+  const [phone, setPhone] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const [data, setData] = useState([{
-    'email': '',
-    'password': '',
-    'firstName': '',
-    'lastName': '',
-    'usertype': '',
-    'phone': '',
-  }]);
+  const users = ["Patient", "Service Provider"]
 
   const _onSignUpPressed = () => {
-    const emailError = emailValidator(uEmail.value);
-    const passwordError = passwordValidator(uPassword.value);
-    const nameError = nameValidator(uFirstName.value);
-    const lastNameError = lastNameValidator(uLastName.value);
-    const phoneError = nameValidator(phone.value);
-    // const confirmPasswordError = confirmPasswordValidator(confirmPassword.value);
 
-    if (passwordError || nameError || lastNameError || phoneError) {
-      setEmail({ ...uEmail, error: emailError });
-      setPassword({ ...uPassword, error: passwordError });
-      setName({ ...uFirstName, error: nameError });
-      setLastName({ ...uLastName, error: lastNameError });
-      setPhone({ ...phone, error: phoneError });
-      setUserType({ ...usertype, error: ""});
-      // setConfirmPassword({ ...confirmPassword, error: confirmPasswordError });
-      return;
-    }
-
-    // const formData = new FormData();
-    // formData.append('uEmail', uEmail.value);
-    // formData.append('uPassword', uPassword.value);
-    // formData.append('uFirstName', uFirstName.value);
-    // formData.append('uLastName', uLastName.value);
-    // formData.append('phone', phone.value);
-    // formData.append('usertype', usertype.value);
-
-    // const body = {
-    //   uEmail: data['email'],
-    //   uPassword: data['password'],
-    //   uFirstName: data['password']
-    // };
+    const formData = { uFirstName, uLastName, uEmail, uPassword, usertype, phone, confirmPassword };
 
     fetch('http://127.0.0.1:8000/signup', {
       method: 'POST',
-      // body: formData,
-      body: JSON.stringify(
-        { uEmail: "dianelys@gmail.com", 
-          uPassword: "Password", 
-          uFirstName: "Dianelys",
-          uLastName: "Saldana",
-          phone: "7873978650",
-          usertype: "Patient"
-        }),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      body: JSON.stringify(formData),
     }).then((res) => {
-      console.log('auth res:', res);
-      // console.log(formData)
+      console.log('auth res:', JSON.stringify(res));
+      console.log(formData)
       if (res.ok) {
         res.json().then((data) => {
           console.log(data);
@@ -96,125 +52,102 @@ export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'
       <Text style={styles.createAcc}>Create Account</Text>
       
       <Image style={styles.avatar} source={require('../assets/images/name.png')}/>
-      <TextInput 
-        style={styles.firstName} 
-        placeholder={'First Name'}
-
-        value={uFirstName.value}
-        onChangeText={text => setName({ value: text, error: '' })}
-        // error={!!name.error}
-        // errorText={name.error}
-        // returnKeyType="next"
-        >
-      </TextInput>
-
-      <Image style={styles.avatar2} source={require('../assets/images/name.png')}/>
-      {/* <Form style={styles.lastName} placeholder={'Last Name'}> */}
-        {/* <Form.Input>
-          onChange={handleChange}
-        </Form.Input> */}
-      {/* </Form> */}
-      <TextInput 
-        style={styles.lastName} 
-        placeholder={'Last Name'}
-
-        value={uLastName.value}
-        onChangeText={text => setLastName({ value: text, error: '' })}
-        // error={!!lastName.error}
-        // errorText={lastName.error}
-        // returnKeyType="next"
-      > </TextInput> 
-
-      <Image style={styles.phoneIcon} source={require('../assets/images/phone.png')}/>
-      <TextInput 
-        style={styles.phone}
-        placeholder={'Phone'} 
-        keyboardType='phone-pad'
-
-        value={phone.value}
-        onChangeText={text => setPhone({ value: text, error: '' })}
-        // returnKeyType="next"
-        > 
-        {/* onChange={handleChange} */}
+        <TextInput 
+          style={styles.firstName} 
+          placeholder={'First Name'}
+          value={uFirstName}
+          onChangeText={text => setName(text)}
+          // returnKeyType="next"
+          >
         </TextInput>
 
-      <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
-      <TextInput 
-        style={styles.email} 
-        placeholder={'Email'}
+      <Image style={styles.avatar2} source={require('../assets/images/name.png')}/>
+        <TextInput 
+          style={styles.lastName} 
+          placeholder={'Last Name'}
+          onChangeText={text => setLastName(text)}
+          // value={uLastName} -> weird glitch
+          // returnKeyType="next"
+        > </TextInput> 
 
-        value={uEmail.value}
-        onChangeText={text => setEmail({ value: text, error: '' })}
-        // error={!!email.error}
-        // errorText={email.error}
-        // label="Email"
-        // returnKeyType="next"
-        autoCapitalize="none"
-        // autoCompleteType="email"
-        // textContentType="emailAddress"
-        keyboardType="email-address"
-        > 
-        {/* onChange={handleChange} */}
-      </TextInput>
+      <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
+        <TextInput 
+          style={styles.email} 
+          placeholder={'Email'}
+          value={uEmail}
+          onChangeText={text => setEmail(text)}
+          // error={!!email.error}
+          // errorText={email.error}
+          // returnKeyType="next"
+          // autoCompleteType="email"
+          // textContentType="emailAddress"
+          autoCapitalize="none"
+          keyboardType="email-address"
+          > 
+          {/* onChange={handleChange} */}
+        </TextInput>
+
+      <Image style={styles.phoneIcon} source={require('../assets/images/phone.png')}/>
+        <TextInput 
+          style={styles.phone}
+          placeholder={'Phone'} 
+          keyboardType='phone-pad'
+          value={phone}
+          onChangeText={text => setPhone(text)}
+          // returnKeyType="next"
+          > 
+          {/* onChange={handleChange} */}
+        </TextInput>
       
       <Image style={styles.userIcon} source={require('../assets/images/user.png')}/>
-      <SelectDropdown
-        data={users}
-        // defaultValueByIndex={1}
-        // defaultValue={'Patient'}
+        <SelectDropdown
+          data={users}
+          // defaultValueByIndex={1}
+          // defaultValue={'Patient'}
 
-        onSelect={(selectedItem, index) => {
-          // console.log(selectedItem, index);
-          setUserType({ value: selectedItem, error: '' })
-        }}
-        defaultButtonText={"Select user type"}
-        buttonTextAfterSelection={(selectedItem, index) => {
-          return selectedItem;
-        }}
-        rowTextForSelection={(item, index) => {
-          return item;
-        }}
-        buttonStyle={styles.dropdown1BtnStyle}
-        buttonTextStyle={styles.dropdown1BtnTxtStyle}
-        dropdownStyle={styles.dropdown1DropdownStyle}
-        rowStyle={styles.dropdown1RowStyle}
-        rowTextStyle={styles.dropdown1RowTxtStyle}
-      />
+          onSelect={(selectedItem, index) => {
+            // console.log(selectedItem, index);
+            setUserType(selectedItem)
+          }}
+          defaultButtonText={"Select user type"}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            return selectedItem;
+          }}
+          rowTextForSelection={(item, index) => {
+            return item;
+          }}
+          buttonStyle={styles.dropdown1BtnStyle}
+          buttonTextStyle={styles.dropdown1BtnTxtStyle}
+          dropdownStyle={styles.dropdown1DropdownStyle}
+          rowStyle={styles.dropdown1RowStyle}
+          rowTextStyle={styles.dropdown1RowTxtStyle}
+        />
 
       <Image style={styles.passIcon} source={require('../assets/images/pass.png')}/>
-      <TextInput 
-        style={styles.pass} 
-        placeholder={'Password'} 
-        secureTextEntry 
-        // value={uPassword}
+        <TextInput 
+          style={styles.pass} 
+          placeholder={'Password'} 
+          secureTextEntry 
+          value={uPassword}
 
-        returnKeyType="done"
-        value={uPassword.value}
-        onChangeText={text => setPassword({ value: text, error: '' })}
-        // error={!!password.error}
-        // errorText={password.error}
-        // label="Password"
-      > 
-        {/* onChange={handleChange} */}
-      </TextInput>
+          returnKeyType="done"
+          onChangeText={text => setPassword(text)}
+        > 
+        </TextInput>
       
       <Image style={styles.confpassIcon} source={require('../assets/images/pass.png')}/>
-      <TextInput 
-        style={styles.confpass} 
-        placeholder={'Confirm Password'} 
-        secureTextEntry
+        <TextInput 
+          style={styles.confpass} 
+          placeholder={'Confirm Password'} 
+          secureTextEntry
 
-        returnKeyType="done"
-        value={confirmPassword.value}
-        onChangeText={text => setConfirmPassword({ value: text, error: '' })}
-        // error={!!password.error}
-        // errorText={password.error}
-        // label="Password"
-      >
-        {/* onChange={handleChange} */}
-      </TextInput>
+          returnKeyType="done"
+          value={confirmPassword}
+          onChangeText={text => setConfirmPassword(text)}
+        >
+        </TextInput>
       
-      <Pressable style={styles.signup}  onPress={_onSignUpPressed}>
+      <Pressable style={styles.signup} onPress={_onSignUpPressed}>
         <Text style={styles.signuptext}>Sign up</Text>
       </Pressable>
 
