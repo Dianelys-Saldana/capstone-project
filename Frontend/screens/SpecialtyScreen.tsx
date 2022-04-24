@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, FlatList, StyleSheet, Text, Pressable, View, Image } from 'react-native';
+import { SafeAreaView, FlatList, StyleSheet, Text, Pressable, View, Image, } from 'react-native';
 import Constants from 'expo-constants';
 import { RootTabScreenProps } from '../types';
 import EditScreenInfo from '../components/EditScreenInfo';

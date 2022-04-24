@@ -4,10 +4,12 @@ import EditScreenInfo from '../components/EditScreenInfo';
 
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
+import BackButton from '../components/BackButton';
 
 export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}> 
+    <BackButton goBack={() => navigation.navigate('SignUp')} />
     <View style={styles.container}>
         <View style={[styles.box,{position: 'absolute'}]}> 
             <Text style={styles.medicalSpec}>Medical Specialties</Text>
