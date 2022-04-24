@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, TextInput, Button, Pressable} from 'react-native';
+import { Image, StyleSheet, ScrollView, TextInput, Button, Pressable} from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 
 import { Text, View} from '../components/Themed';
@@ -7,7 +7,8 @@ import { RootTabScreenProps } from '../types';
 
 export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) {
   return (
-    <View style={styles.container}> 
+    <ScrollView showsVerticalScrollIndicator={false}> 
+    <View style={styles.container}>
         <View style={[styles.box,{position: 'absolute'}]}> 
             <Text style={styles.medicalSpec}>Medical Specialties</Text>
             <Text style={styles.see}>See all</Text>
@@ -94,8 +95,9 @@ export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) 
             </Pressable>
 
         </View>
-        <EditScreenInfo path="/screens/Dashboard.tsx" />
-    </View>
+        </View>
+        {/* <EditScreenInfo path="/screens/Dashboard.tsx" /> */}
+    </ScrollView>
   );
 }
  
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     backgroundColor: '#F5F3EF',
   },
   box: {

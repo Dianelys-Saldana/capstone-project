@@ -44,6 +44,7 @@ export default function LoginScreen({ navigation }: RootTabScreenProps<'SignIn'>
         <TextInput 
           style={styles.email} 
           placeholder={'Email'}
+          placeholderTextColor="#0E7979"
           onChangeText={text => setEmail(text)}
           >
         </TextInput>
@@ -52,6 +53,7 @@ export default function LoginScreen({ navigation }: RootTabScreenProps<'SignIn'>
         <TextInput 
           style={styles.pass} 
           placeholder={'Password'}
+          placeholderTextColor="#0E7979"
           secureTextEntry 
           onChangeText={text => setPassword(text)}
         ></TextInput>

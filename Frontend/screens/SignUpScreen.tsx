@@ -55,6 +55,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'
         <TextInput 
           style={styles.firstName} 
           placeholder={'First Name'}
+          placeholderTextColor="#0E7979"
           value={uFirstName}
           onChangeText={text => setName(text)}
           // returnKeyType="next"
@@ -65,6 +66,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'
         <TextInput 
           style={styles.lastName} 
           placeholder={'Last Name'}
+          placeholderTextColor="#0E7979"
           onChangeText={text => setLastName(text)}
           // value={uLastName} -> weird glitch
           // returnKeyType="next"
@@ -74,6 +76,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'
         <TextInput 
           style={styles.email} 
           placeholder={'Email'}
+          placeholderTextColor="#0E7979"
           value={uEmail}
           onChangeText={text => setEmail(text)}
           // error={!!email.error}
@@ -91,6 +94,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'
         <TextInput 
           style={styles.phone}
           placeholder={'Phone'} 
+          placeholderTextColor="#0E7979"
           keyboardType='phone-pad'
           value={phone}
           onChangeText={text => setPhone(text)}
@@ -101,7 +105,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'
       <Image style={styles.userIcon} source={require('../assets/images/user.png')}/>
         <SelectDropdown
           data={users}
-          // defaultValueByIndex={1}
+          // defaultValueByIndex={0}
           // defaultValue={'Patient'}
 
           onSelect={(selectedItem, index) => {
@@ -126,6 +130,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'
         <TextInput 
           style={styles.pass} 
           placeholder={'Password'} 
+          placeholderTextColor="#0E7979"
           secureTextEntry 
           value={uPassword}
 
@@ -138,6 +143,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'
         <TextInput 
           style={styles.confpass} 
           placeholder={'Confirm Password'} 
+          placeholderTextColor="#0E7979"
           secureTextEntry
 
           returnKeyType="done"
@@ -147,6 +153,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'
         </TextInput>
       
       <Pressable style={styles.signup} onPress={_onSignUpPressed}>
+      {/* <Pressable style={styles.signup} onPress={() => navigation.navigate('Dashboard')}> */}
         <Text style={styles.signuptext}>Sign up</Text>
       </Pressable>
 
@@ -155,7 +162,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'SignUp'
         <Text style={styles.login}>Login</Text>
       </Pressable>
       
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      {/* <EditScreenInfo path="/screens/SignUp.tsx" /> */}
     </View>
   );
 }
@@ -314,21 +321,23 @@ const styles = StyleSheet.create({
     borderColor: '#0E7979',
   },
   dropdown1BtnTxtStyle: { 
-    color: '#9dabac', 
+    // color: '#9dabac', 
+    color: '#0E7979',
     textAlign: "left",
     left: 4,
     fontSize: 20,
   },
   dropdown1DropdownStyle: { 
-    backgroundColor: "#EFEFEF" 
+    backgroundColor: "#EFEFEF",
   },
   dropdown1RowStyle: {
     backgroundColor: "#EFEFEF",
-    borderBottomColor: "#C5C5C5",
+    borderBottomColor: "#C5C5C5"
   },
   dropdown1RowTxtStyle: { 
-    color: "#444", 
-    textAlign: "left" 
+    // color: "#444", 
+    color: '#0E7979',
+    textAlign: "left", 
   },
   userIcon:{
     position: 'absolute',
