@@ -3,6 +3,7 @@ import { SafeAreaView, FlatList, StyleSheet, Text, Pressable, View, Image, } fro
 import Constants from 'expo-constants';
 import { RootTabScreenProps } from '../types';
 import EditScreenInfo from '../components/EditScreenInfo';
+import SearchBar from "react-native-dynamic-search-bar";
 
 const specialtyArea = 
   {
@@ -72,6 +73,13 @@ export default function Specialty({ navigation }: RootTabScreenProps<'SignIn'>) 
 
   return (
     <SafeAreaView style={styles.container}>
+      <SearchBar
+      placeholder="Search here"
+      onPress={() => alert("onPress")}
+      onChangeText={(text) => console.log(text)}
+      style={styles.searchBar}
+      />
+
       <Text style={styles.specialty}>{specialtyArea.area} Specialty</Text>
 
       <FlatList
@@ -175,4 +183,10 @@ const styles = StyleSheet.create({
     top: 23,
     left: 25,
   },
+  searchBar: {
+    top: 25,
+    width: 357,
+    borderRadius: 33,
+    position: 'absolute',
+  }
 });

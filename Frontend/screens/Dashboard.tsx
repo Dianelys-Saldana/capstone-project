@@ -5,11 +5,19 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import BackButton from '../components/BackButton';
+import SearchBar from "react-native-dynamic-search-bar";
 
 export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}> 
     <BackButton goBack={() => navigation.navigate('SignUp')} />
+    <SearchBar
+      placeholder="Search here"
+      onPress={() => alert("onPress")}
+      onChangeText={(text) => console.log(text)}
+      style={styles.searchBar}
+    />
+
     <View style={styles.container}>
         <View style={[styles.box,{position: 'absolute'}]}> 
             <Text style={styles.medicalSpec}>Medical Specialties</Text>
@@ -582,5 +590,10 @@ const styles = StyleSheet.create({
     height: 45,
     top: 20,
     left: 22,
+  },
+  searchBar: {
+    top: 100,
+    width: 357,
+    borderRadius: 33,
   }
 });
