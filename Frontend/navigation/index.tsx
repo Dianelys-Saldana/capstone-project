@@ -21,6 +21,7 @@
  import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
  import LinkingConfiguration from './LinkingConfiguration';
 import Specialty from '../screens/SpecialtyScreen';
+import Specialist from '../screens/SpecialistScreen';
  
  export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
    return (
@@ -48,6 +49,7 @@ import Specialty from '../screens/SpecialtyScreen';
        </Stack.Group>
        <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
        <Stack.Screen name="Specialty" component={Specialty} options={{ headerShown: false }} />
+       <Stack.Screen name="Specialist" component={Specialist} options={{ headerShown: false }} />
      </Stack.Navigator>
    );
  }

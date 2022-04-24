@@ -19,6 +19,7 @@
    NotFound: undefined;
    Dashboard: undefined;
    Specialty: undefined;
+   Specialist: undefined;
  };
  
  export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

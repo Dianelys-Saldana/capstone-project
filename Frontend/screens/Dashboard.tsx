@@ -23,7 +23,8 @@ export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) 
             <Text style={styles.medicalSpec}>Medical Specialties</Text>
             <Text style={styles.see}>See all</Text>
 
-            <Pressable style={[styles.specBox,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
+            <Pressable style={[styles.specBox,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialist')}> 
+            {/* TODO: Cambiar ruta a Specialty */}
                 <Text style={styles.cardio}>Cardiology</Text>
                 <Image style={styles.cardioIcon} source={require('../assets/images/cardio.png')}/>
             </Pressable>
@@ -106,7 +107,7 @@ export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) 
 
         </View>
         </View>
-        {/* <EditScreenInfo path="/screens/Dashboard.tsx" /> */}
+        <EditScreenInfo path="/screens/Dashboard.tsx" />
     </ScrollView>
   );
 }

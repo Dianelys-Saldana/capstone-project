@@ -4,6 +4,7 @@ import Constants from 'expo-constants';
 import { RootTabScreenProps } from '../types';
 import EditScreenInfo from '../components/EditScreenInfo';
 import SearchBar from "react-native-dynamic-search-bar";
+import BackButton from '../components/BackButton';
 
 const specialtyArea = 
   {
@@ -45,7 +46,6 @@ function Item({ id, name, review, location, onSelect, selected }:
     <View style={[styles.item]}>
       <Pressable
         // onPress={() => onSelect(id)}
-        // onPress={() => navigation.navigate('SignIn')}
         style={[ styles.iconBox ]}>
 
         <Image style={styles.icon} source={require('../assets/images/dr.png')}/>
@@ -65,19 +65,20 @@ export default function Specialty({ navigation }: RootTabScreenProps<'SignIn'>) 
     id => {
       const newSelected = new Map(selected);
       newSelected.set(id, !selected.get(id));
-
       setSelected(newSelected);
+      navigation.navigate('Specialist');
     },
     [selected],
   );
 
   return (
     <SafeAreaView style={styles.container}>
+      <BackButton goBack={() => navigation.navigate('Dashboard')} />
       <SearchBar
-      placeholder="Search here"
-      onPress={() => alert("onPress")}
-      onChangeText={(text) => console.log(text)}
-      style={styles.searchBar}
+        placeholder="Search here"
+        onPress={() => alert("onPress")}
+        onChangeText={(text) => console.log(text)}
+        style={styles.searchBar}
       />
 
       <Text style={styles.specialty}>{specialtyArea.area} Specialty</Text>
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
     left: 25,
   },
   searchBar: {
-    top: 25,
+    top: 30,
     width: 357,
     borderRadius: 33,
     position: 'absolute',
