@@ -1,5 +1,7 @@
+import json
 from config.dbconfig import pg_config
 import psycopg2
+from werkzeug.security import generate_password_hash, check_password_hash
 from model.user import UsersDAO
 from fastapi.encoders import jsonable_encoder as jsonify
 
@@ -23,9 +25,10 @@ class BaseUsers:
     def createUser(self, uFirstName, uLastName, uEmail, uPassword, usertype, phone):
         dao = UsersDAO()
         checkUser = dao.getUserInfo(uEmail)
+        hash_uPassword = generate_password_hash(uPassword, method='sha256')
         if checkUser is None:
-            uId = dao.createUser(uFirstName, uLastName, uEmail, uPassword, usertype, phone)
-            result = self.build_row_dict((uId,uFirstName, uLastName, uEmail, uPassword, usertype, phone))
+            uId = dao.createUser(uFirstName, uLastName, uEmail, hash_uPassword, usertype, phone)
+            result = self.build_row_dict((uId,uFirstName, uLastName, uEmail, hash_uPassword, usertype, phone))
             return jsonify({
                     'status' : "Success",
                     'body': result
@@ -37,13 +40,15 @@ class BaseUsers:
         dao = UsersDAO()
         user = dao.getUserInfo(uEmail)
         if user:    
-            check = user
-            if check==uPassword:
+            check = user[0][2]
+            if check_password_hash(check, uPassword):
                 return jsonify({
                     'status' : "Success",
                     'body': {
                         'uid': user[0][0],
-                        'uEmail': user[0][3]
+                        'uFirstName' : user[0][3],
+                        'uLastName' : user[0][4],
+                        'uEmail': user[0][1]
                     }
                 }), 200
             else:
@@ -57,7 +62,39 @@ class BaseUsers:
                     'message': 'Wrong email or password '
                 }), 404
 
-    def delete(self, uEmail, confirm):
+    def deletion_confirmation():
+        confirm = True
+        return confirm
+
+    def delete(self, uEmail):
         dao = UsersDAO
         user = dao.getUserInfo(uEmail)
-        
+        confirm = self.deletion_confirmation()
+        if confirm:
+            result = dao.deleteUser(user[0][0])
+            if result:
+                return jsonify("ACCOUNT DELETED"), 200
+            else:
+                return jsonify("NOT FOUND"), 404
+    
+    def updateUser(self, uid, uFirstName, uLastName, uEmail, uPassword):
+        dao = UsersDAO()
+        if True:
+            dao.updateUser(uid, uFirstName, uLastName, uEmail, uPassword)
+            return jsonify({
+                'status' : "Success",
+                'message' : 'Sucessful update'
+            }), 200
+        # else:
+        #     return jsonify({
+        #             'status' : "Error",
+        #             'message': 'Wrong email or password '
+        #         }), 404
+    
+    def checkIfProfessional(self, uid):
+        dao = UsersDAO()
+        urole = dao.checkIfProfessional(uid)
+        if urole:
+            return jsonify("APPROVED"), 200
+        else:
+            return jsonify("ACCESS DENIED"), 401
