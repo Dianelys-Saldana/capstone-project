@@ -1,9 +1,7 @@
-from crypt import methods
 from fastapi import FastAPI
 from pydantic import BaseModel
 from requests import request
 import requests
-# from flask import request
 from controller.users import BaseUsers
 
 class User(BaseModel):
@@ -35,10 +33,11 @@ async def login(user: UserLogin):
 @app.post("/signup", tags=["MediFast"])
 async def signup(user: User):
     BaseUsers().createUser(user.uFirstName, user.uLastName, user.uEmail, user.uPassword, user.usertype, user.phone)
-    return {"message" : "Accoutn Created"}
+    return {"message" : "Account Created"}
 
 @app.put("/editprofile", tags=["MediFast"])
-async def editProfile():
+async def editProfile(user: User):
+    BaseUsers().edit
     return {"message" : "Put"}
 
 @app.delete("/deleteprofile", tags=["MediFast"])

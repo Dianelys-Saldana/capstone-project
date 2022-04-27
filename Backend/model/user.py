@@ -1,3 +1,4 @@
+from turtle import up
 from config.dbconfig import pg_config
 from fastapi.encoders import jsonable_encoder as jsonify
 import psycopg2
@@ -21,3 +22,29 @@ class UsersDAO:
         query = "select * from users where email = %s;"
         result = cursor.execute(query, (email,))
         return jsonify(result)
+
+    def deleteUser(self, uid):
+        cursor = self.conn.cursor()
+        query = "delete from user where uid=%s;"
+        cursor.execute(query,(uid,))
+        affectedRows = cursor.rowcount
+        self.conn.commit()
+        self.conn.close()
+        return affectedRows != 0
+
+    def updateUser(self, uid, uFirstName, uLastName, uEmail, uPassword):
+        query = "update users set uFirstName=%s, uLastName=%s, uEmail=%s, uPassword=%s, where uid=%s"
+        cursor = self.conn.cursor()
+        cursor.execute(query, (uFirstName, uLastName, uEmail, uPassword, uid,))
+        self.conn.commit()
+        self.conn.close()
+        return True
+
+    def checkIfProfessional(self, uid):
+        query = "select pid from professional where uid=%s"
+        cursor = self.conn.cursor()
+        cursor.execute(query, (uid,))
+        urole = cursor.fetchone()[0]
+        self.conn.commit()
+        self.conn.close()
+        return urole
