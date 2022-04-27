@@ -76,7 +76,7 @@ export default function Specialty({ navigation }: RootTabScreenProps<'SignIn'>) 
       <BackButton goBack={() => navigation.navigate('Dashboard')} />
       <SearchBar
         placeholder="Search here"
-        onPress={() => alert("onPress")}
+        // onPress={() => alert("onPress")}
         onChangeText={(text) => console.log(text)}
         style={styles.searchBar}
       />

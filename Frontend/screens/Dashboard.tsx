@@ -13,7 +13,7 @@ export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) 
     <BackButton goBack={() => navigation.navigate('SignUp')} />
     <SearchBar
       placeholder="Search here"
-      onPress={() => alert("onPress")}
+      // onPress={() => alert("onPress")}
       onChangeText={(text) => console.log(text)}
       style={styles.searchBar}
     />

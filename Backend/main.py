@@ -27,6 +27,7 @@ async def profile():
 
 @app.get("/login", tags=["MediFast"])
 async def login(user: UserLogin):
+    print("Test")
     BaseUsers().login(user.email, user.password)
 
 @app.post("/signup", tags=["MediFast"])

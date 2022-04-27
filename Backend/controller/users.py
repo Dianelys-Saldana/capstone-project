@@ -38,7 +38,7 @@ class BaseUsers:
         user = dao.getUserInfo(uEmail)
         print("HELLLLLLOOOOO",user)
         if user:    
-            check = user
+            check = user[0][2]
             if check==uPassword:
                 return jsonify({
                     'status' : "Success",

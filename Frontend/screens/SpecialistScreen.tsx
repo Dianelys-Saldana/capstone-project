@@ -8,7 +8,7 @@ import MapView from 'react-native-maps';
 
 const data = {
     id: '1',
-    name: 'Dr. Rivera',
+    name: 'Dr. Cruz',
     review: '4.5',
     location: 'Mayaguez',
     info: 'Dr. Angela Cruz has over 15 years of experience in Obstetrics & Gynecology. Angela M.  Cruz, MD earned a degree of Medicine at St. George’s University and is licensed by the American Board of Obstetrics and Gynecology.',
@@ -59,8 +59,7 @@ export default function Specialist({ navigation }: RootTabScreenProps<'SignIn'>)
                     longitudeDelta: pin.longitudeDelta,
             }}/>
 
-            <Pressable onPress={() => navigation.navigate('Specialty')} style={styles.btn}>
-                {/* TODO: Cambiar a Booking */}
+            <Pressable onPress={() => navigation.navigate('Booking')} style={styles.btn}>
                 <Text style={styles.btntext}>Book Appointment</Text>
             </Pressable>
         </View>

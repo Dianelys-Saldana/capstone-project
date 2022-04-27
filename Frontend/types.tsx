@@ -20,6 +20,9 @@
    Dashboard: undefined;
    Specialty: undefined;
    Specialist: undefined;
+   Booking: undefined;
+   Success: undefined;
+   Reviews: undefined;
  };
  
  export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

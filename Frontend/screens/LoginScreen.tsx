@@ -5,27 +5,30 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
+import Server from '../services/serverRoutes';
+import Auth from '../services/authentication';
+
 export default function LoginScreen({ navigation }: RootTabScreenProps<'SignIn'>) {
 
   const [uEmail, setEmail] = useState('');
   const [uPassword, setPassword] = useState('');
 
-  const _onLoginPressed = () => {
+  const _onLoginPressed = async () => {
 
     const formData = { uEmail, uPassword };
 
-    fetch('http://127.0.0.1:8000/login', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData),
-    }).then((res) => {
+    // fetch('http://127.0.0.1:8000/login', {
+    //   method: 'GET',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    await Server.login(JSON.stringify(formData)).then((res) => {
       console.log('auth res:', JSON.stringify(res));
       console.log(formData)
       if (res.ok) {
-        res.json().then((data) => {
+        Auth.login(true, uEmail, uPassword);
+        res.json().then((data: any) => {
           console.log(data);
           navigation &&
             navigation.navigate('Dashboard');

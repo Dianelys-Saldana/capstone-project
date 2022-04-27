@@ -22,6 +22,9 @@
  import LinkingConfiguration from './LinkingConfiguration';
 import Specialty from '../screens/SpecialtyScreen';
 import Specialist from '../screens/SpecialistScreen';
+import Booking from '../screens/BookingScreen';
+import Success from '../screens/Success';
+import Reviews from '../screens/ReviewsScreen';
  
  export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
    return (
@@ -50,6 +53,9 @@ import Specialist from '../screens/SpecialistScreen';
        <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
        <Stack.Screen name="Specialty" component={Specialty} options={{ headerShown: false }} />
        <Stack.Screen name="Specialist" component={Specialist} options={{ headerShown: false }} />
+       <Stack.Screen name="Booking" component={Booking} options={{ headerShown: false }} />
+       <Stack.Screen name="Success" component={Success} options={{ headerShown: false }} />
+       <Stack.Screen name="Reviews" component={Reviews} options={{ headerShown: false }} />
      </Stack.Navigator>
    );
  }
