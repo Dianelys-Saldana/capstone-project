@@ -1,60 +1,120 @@
 import React from 'react';
-import { Image, StyleSheet, ScrollView, TextInput, Button, Pressable, Touchable} from 'react-native';
-import EditScreenInfo from '../components/EditScreenInfo';
+import { StyleSheet, ScrollView, TextInput, Button, Pressable, Touchable, SafeAreaView, FlatList} from 'react-native';
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import BackButton from '../components/BackButton';
 
-const data = {
-    id: '1',
-    name: 'Dr. Cruz',
-    review: '4.5',
-    location: 'Mayaguez',
-    info: 'Dr. Angela Cruz has over 15 years of experience in Obstetrics & Gynecology. Angela M.  Cruz, MD earned a degree of Medicine at St. George’s University and is licensed by the American Board of Obstetrics and Gynecology.',
-    days: 'Mon - Fri',
-    hours: '8:00 AM - 5:00 PM',
-};
+const data = [
+    {
+        id: '1',
+        patient: 'User X',
+        rating: '4.5',
+        review: 'The services that I received from Dr. Cruz is excellent. Dr. Cruz and the staff are friendly and ensure that I am properly informed about my health and care.',
+    },
+    {
+        id: '2',
+        patient: 'User Y',
+        rating: '4.7',
+        review: 'Great experience as a first timer. I barely waited to be helped when I checked in. I had a great visit so I highly recommend this clinic.',
+    },
+];
 
-const pin = {
-    latitude: 37.78825,
-    longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-};
+const dr = {
+    dr: 'Dr. Cruz',
+}
 
-export default function Specialist({ navigation }: RootTabScreenProps<'SignIn'>) {
+function Item({ id, patient, rating, review } : { id: string, patient: string, rating: string, review: string }) {
+    return (
+    <View style={[styles.item]}> 
+        <Text style={styles.patient}>{patient}</Text>
+        <Text style={styles.rating}>{rating}</Text>
+        <Text style={styles.review}>{review}</Text>
+    </View>
+    );
+}   
 
-  return (
-    <ScrollView showsVerticalScrollIndicator={false}> 
-    <BackButton goBack={() => navigation.navigate('Booking') } />
+export default function Reviews({ navigation }: RootTabScreenProps<'SignIn'>) {
     
-    {/* <EditScreenInfo path="/screens/Dashboard.tsx" /> */}
-    </ScrollView>
-  );
+    return (
+        <SafeAreaView style={styles.container}>
+          <BackButton goBack={() => navigation.navigate('Specialist')} />
+    
+          <Text style={styles.dr}>{dr.dr}'s Reviews</Text>
+          <FlatList
+            data={data}
+            renderItem={({ item }) => (
+              <Item
+                id={item.id}
+                patient={item.patient}
+                rating={item.rating}
+                review={item.review}
+              />
+            )}
+            keyExtractor={item => item.id}
+          />
+        
+        </SafeAreaView>
+        
+      );
 }
  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#F5F3EF',
   },
-  icon: {
-    position: 'absolute',
-    width: 150,
-    height: 150,
-    top: 300,
-    left: 135,
-  },
-  success: {
-    position: 'absolute',
-    width: 350,
-    height: 100,
-    top: 460,
-    // left: 30,
+  dr: {
+    // position: 'absolute',
+    width: 250,
+    height: 45,
+    top: 30,
+    left: 40,
     color: '#323337',
-    fontSize: 24,
-    textAlign: 'center',
-    // fontWeight: 'bold',
-  },});
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
+  item: {
+    padding: 20,
+    marginVertical: 8,
+    flexDirection: "row",
+    
+    backgroundColor: '#C0DEDD',
+    borderRadius: 40,
+    width: 357,
+    height: 136,
+    left: 27.5,
+    top: 30,
+  },
+  patient: {
+    position: 'absolute',
+    width: 180,
+    height: 45,
+    top: 15,
+    left: 30,
+    color: '#323337',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  rating: {
+    position: 'absolute',
+    width: 80,
+    height: 45,
+    top: 16,
+    left: 120,
+    color: '#323337',
+    fontSize: 16,
+  },
+  review: {
+    position: 'absolute',
+    width: 300,
+    height: 140,
+    top: 43,
+    left: 30,
+    color: '#323337',
+    fontSize: 14,
+    lineHeight: 20,
+    textAlign: 'justify',
+  },
+});

@@ -14,7 +14,7 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 export default function Booking({ navigation }: RootTabScreenProps<'SignIn'>) {
   
   return (
-    <ScrollView showsVerticalScrollIndicator={false}> 
+    // <ScrollView showsVerticalScrollIndicator={false}> 
     <View style={styles.container}>
     <BackButton goBack={() => navigation.navigate('Specialist') } />
     {/* TODO: Cambiar ruta a Specialty */}
@@ -28,8 +28,7 @@ export default function Booking({ navigation }: RootTabScreenProps<'SignIn'>) {
         </Pressable>
 
     </View>
-    {/* <EditScreenInfo path="/screens/Dashboard.tsx" /> */}
-    </ScrollView>
+    // </ScrollView>
   );
 }
  
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
   },
   calendar: {
     // position: 'absolute',
-    flex: 1,
+    // flex: 1,
     top: 100,
     width: 350,
   },

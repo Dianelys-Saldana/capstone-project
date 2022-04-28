@@ -23,6 +23,7 @@
    Booking: undefined;
    Success: undefined;
    Reviews: undefined;
+   SendMessage: undefined;
  };
  
  export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -33,6 +34,7 @@
  export type RootTabParamList = {
    SignIn: undefined;
    SignUp: undefined;
+  //  SendMessage: { channelId: string};
   //  Dashboard: undefined;
   //  Profile: undefined;
  };

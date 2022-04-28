@@ -27,10 +27,8 @@ export default function Specialist({ navigation }: RootTabScreenProps<'SignIn'>)
   return (
     <ScrollView showsVerticalScrollIndicator={false}> 
     <BackButton goBack={() => navigation.navigate('Booking') } />
-    <Pressable style={styles.container} onPress={() => navigation.navigate('Reviews')}>
-    
-    {/* TODO: Quitar buton y que cuando presione cualquier cosa te lleve al area de reviews */}
-
+    <Pressable style={styles.container} onTouchEndCapture={() => navigation.navigate('Dashboard')}>
+  
         <Image style={styles.icon} source={require('../assets/images/Ok.png')}/>
         <Text style={styles.success}>{`Appointment Scheduled
 Successfully!`}</Text>

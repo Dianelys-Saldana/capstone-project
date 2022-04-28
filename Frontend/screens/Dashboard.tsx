@@ -9,7 +9,7 @@ import SearchBar from "react-native-dynamic-search-bar";
 
 export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) {
   return (
-    <ScrollView showsVerticalScrollIndicator={false}> 
+    <View style={styles.container}> 
     <BackButton goBack={() => navigation.navigate('SignUp')} />
     <SearchBar
       placeholder="Search here"
@@ -108,7 +108,7 @@ export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) 
         </View>
         </View>
         <EditScreenInfo path="/screens/Dashboard.tsx" />
-    </ScrollView>
+    </View>
   );
 }
  
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    // justifyContent: 'center',
+    justifyContent: 'center',
     backgroundColor: '#F5F3EF',
   },
   box: {

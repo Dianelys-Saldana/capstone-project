@@ -25,6 +25,7 @@ import Specialist from '../screens/SpecialistScreen';
 import Booking from '../screens/BookingScreen';
 import Success from '../screens/Success';
 import Reviews from '../screens/ReviewsScreen';
+import SendMessage from '../screens/SendMessageScreen';
  
  export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
    return (
@@ -56,6 +57,7 @@ import Reviews from '../screens/ReviewsScreen';
        <Stack.Screen name="Booking" component={Booking} options={{ headerShown: false }} />
        <Stack.Screen name="Success" component={Success} options={{ headerShown: false }} />
        <Stack.Screen name="Reviews" component={Reviews} options={{ headerShown: false }} />
+       <Stack.Screen name="SendMessage" component={SendMessage} options={{ headerShown: false }} />
      </Stack.Navigator>
    );
  }

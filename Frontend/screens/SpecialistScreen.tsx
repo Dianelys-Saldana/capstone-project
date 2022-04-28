@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, ScrollView, TextInput, Button, Pressable} from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, ScrollView, TextInput, Button, Pressable} from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -26,14 +26,18 @@ const pin = {
 export default function Specialist({ navigation }: RootTabScreenProps<'SignIn'>) {
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}> 
+    // <ScrollView showsVerticalScrollIndicator={false}> 
     <View style={styles.container}>
-    <BackButton goBack={() => navigation.navigate('Dashboard') } />
+    <BackButton goBack={() => navigation.navigate('Specialty') } />
     {/* TODO: Cambiar ruta a Specialty */}
         <View style={[styles.item]}> 
+        
+        <TouchableOpacity onPress={() => navigation.navigate('SendMessage')}>
+          <Image style={styles.send} source={require('../assets/images/send.png')}/>
+        </TouchableOpacity>
+
         <Pressable
             style={[ styles.iconBox ]}>
-
             <Image style={styles.icon} source={require('../assets/images/dr.png')}/>
 
             <Text style={styles.name}>{data.name}</Text>
@@ -46,7 +50,7 @@ export default function Specialist({ navigation }: RootTabScreenProps<'SignIn'>)
             <Text style={styles.workinghours}>Working Hours</Text>
             <Text style={styles.dayshours}>{data.days}, {data.hours}</Text>
             <Text style={styles.reviews}>Reviews</Text>
-            <Text style={styles.seereviews}>See reviews</Text>
+            <Text style={styles.seereviews} onPress={() => navigation.navigate('Reviews')}>See reviews</Text>
 
             <Text style={styles.locationname}>Location</Text>
             <MapView
@@ -64,8 +68,7 @@ export default function Specialist({ navigation }: RootTabScreenProps<'SignIn'>)
             </Pressable>
         </View>
     </View>
-    {/* <EditScreenInfo path="/screens/Dashboard.tsx" /> */}
-    </ScrollView>
+    // </ScrollView>
   );
 }
  
@@ -134,6 +137,13 @@ const styles = StyleSheet.create({
     height: 50,
     top: 23,
     left: 25,
+  },
+  send: {
+    position: 'absolute',
+    width: 30,
+    height: 30,
+    top: 5,
+    left: 280,
   },
   about: {
     position: 'absolute',
