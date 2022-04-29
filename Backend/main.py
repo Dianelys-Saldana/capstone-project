@@ -20,7 +20,7 @@ app = FastAPI()
 
 @app.get("/", tags=["MediFast"])
 async def home():
-    return {"message" : "Hello World"}
+    return {"message" : "Welcome to MediFast"}
 
 @app.get("/profile", tags=["MediFast"])
 async def profile():
@@ -33,18 +33,17 @@ async def login(user: UserLogin):
 @app.post("/signup", tags=["MediFast"])
 async def signup(user: User):
     BaseUsers().createUser(user.uFirstName, user.uLastName, user.uEmail, user.uPassword, user.usertype, user.phone)
-    return {"message" : "Account Created"}
+    return {"message" : "Account Created!"}
 
 @app.put("/editprofile", tags=["MediFast"])
 async def editProfile(user: User):
     BaseUsers().edit
-    return {"message" : "Put"}
+    return {"message" : "Edit Account"}
 
 @app.delete("/deleteprofile", tags=["MediFast"])
 async def delete():
-    return {"message" : "Delete"}
+    return {"message" : "Delete Account"}
 
-# @app.route("/appointments", methods=['GET', 'POST', 'PUT'], tags=["MediFast"])
-# def handleAppointments(aid):
-#     if requests.
-#         return BaseUsers.
+@app.route("/appointments", methods=['GET', 'POST', 'PUT'], tags=["MediFast"])
+def handleAppointments(aid):
+    return {"message" : "Appointments"}
