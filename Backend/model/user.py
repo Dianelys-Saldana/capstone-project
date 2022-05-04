@@ -1,4 +1,3 @@
-from turtle import up
 from config.dbconfig import pg_config
 from fastapi.encoders import jsonable_encoder as jsonify
 import psycopg2
@@ -8,10 +7,10 @@ class UsersDAO:
         connection_url = "dbname=%s user=%s password=%s port=%s host=%s" % (pg_config["database"], pg_config["username"], pg_config["password"], pg_config["port"], pg_config["host"])
         self.conn = psycopg2.connect(connection_url)
     
-    async def createUser(self, uFirstName, uLastName, uEmail, uPassword, usertype, phone):
+    def createUser(self, uFirstName, uLastName, uEmail, uPassword, usertype, phone):
         cursor = self.conn.cursor()
-        query = "insert into users (email, password, uFirstName, uLastName, usertype) values (%s,%s,%s,%s,%s) returning userId;"
-        cursor.execute(query, (uFirstName, uLastName, uEmail, uPassword, usertype, phone))
+        query = "insert into users (email, password, ufirstname, ulastname, usertype, phone) values (%s, %s, %s, %s, %s, %s) returning uid;"
+        cursor.execute(query, (uEmail, uPassword, uFirstName, uLastName, usertype, phone))
         uid = cursor.fetchone()[0]
         self.conn.commit()
         self.conn.close()
