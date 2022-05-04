@@ -32,7 +32,7 @@ export default function Specialist({ navigation }: RootTabScreenProps<'SignIn'>)
     {/* TODO: Cambiar ruta a Specialty */}
         <View style={[styles.item]}> 
         
-        <TouchableOpacity onPress={() => navigation.navigate('SendMessage')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
           <Image style={styles.send} source={require('../assets/images/send.png')}/>
         </TouchableOpacity>
 

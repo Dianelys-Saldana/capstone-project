@@ -7,10 +7,10 @@ import { RootTabScreenProps } from '../types';
 import BackButton from '../components/BackButton';
 import SearchBar from "react-native-dynamic-search-bar";
 
-export default function Dashboard({ navigation }: RootTabScreenProps<'SignIn'>) {
+export default function Dashboard({ navigation }: RootTabScreenProps<'Dashboard'>) {
   return (
     <View style={styles.container}> 
-    <BackButton goBack={() => navigation.navigate('SignUp')} />
+    {/* <BackButton goBack={() => navigation.navigate('SignUp')} /> */}
     <SearchBar
       placeholder="Search here"
       // onPress={() => alert("onPress")}
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     width: 357,
     flexDirection: "row",
     padding: 20,
-    top: 130,
+    top: 100,
     backgroundColor: '#DDE3E9',
     borderRadius: 33,
   },
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     width: 357,
     flexDirection: "row",
     padding: 20,
-    top: 520,
+    top: 490,
     backgroundColor: '#C0DEDD',
     borderRadius: 33,
   },
@@ -593,7 +593,7 @@ const styles = StyleSheet.create({
     left: 22,
   },
   searchBar: {
-    top: 100,
+    top: 80,
     width: 357,
     borderRadius: 33,
   }

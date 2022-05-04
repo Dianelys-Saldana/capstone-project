@@ -17,13 +17,18 @@
    Root: NavigatorScreenParams<RootTabParamList> | undefined;
    Modal: undefined;
    NotFound: undefined;
-   Dashboard: undefined;
    Specialty: undefined;
    Specialist: undefined;
-   Booking: undefined;
    Success: undefined;
    Reviews: undefined;
-   SendMessage: undefined;
+
+  //  SignIn: undefined;
+   SignUp: undefined;
+
+  //  Chat: undefined;
+  //  Profile: undefined;
+  //  Dashboard: undefined;
+  //  Booking: undefined;
  };
  
  export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -33,10 +38,12 @@
  
  export type RootTabParamList = {
    SignIn: undefined;
-   SignUp: undefined;
-  //  SendMessage: { channelId: string};
-  //  Dashboard: undefined;
-  //  Profile: undefined;
+  //  SignUp: undefined;
+
+   Chat: undefined;
+   Profile: undefined;
+   Dashboard: undefined;
+   Booking: undefined;
  };
  
  export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

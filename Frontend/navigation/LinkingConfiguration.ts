@@ -15,16 +15,16 @@
      screens: {
        Root: {
          screens: {
-           SignIn: {
+           Dashboard: {
              screens: {
                TabOneScreen: 'one',
              },
            },
-           SignUp: {
-             screens: {
-               TabTwoScreen: 'two',
-             },
-           },
+          //  SignUp: {
+          //    screens: {
+          //      TabTwoScreen: 'two',
+          //    },
+          //  },
          },
        },
        Modal: 'modal',
