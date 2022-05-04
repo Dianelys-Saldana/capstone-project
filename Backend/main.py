@@ -16,6 +16,12 @@ class UserLogin(BaseModel):
     email: str
     password: str
 
+class UserUpdate(BaseModel):
+    uFirstName: str
+    uLastName: str
+    uEmail: str
+    uPassword: str
+
 app = FastAPI()
 
 @app.get("/", tags=["MediFast"])
@@ -36,14 +42,23 @@ async def signup(user: User):
     return {"message" : "Account Created!"}
 
 @app.put("/editprofile", tags=["MediFast"])
-async def editProfile(user: User):
-    BaseUsers().edit
+async def editProfile(user: UserUpdate):
+    BaseUsers().getUserID(user.uEmail, user.uFirstName, user.uLastName)
+    BaseUsers().updateUser(user.uFirstName, user.uLastName, user.uEmail, user.uPassword)
     return {"message" : "Edit Account"}
 
 @app.delete("/deleteprofile", tags=["MediFast"])
 async def delete():
     return {"message" : "Delete Account"}
 
-@app.route("/appointments", methods=['GET', 'POST', 'PUT'], tags=["MediFast"])
-def handleAppointments(aid):
+@app.get("/appointments", tags=["MediFast"])
+def appointments(aid):
+    return {"message" : "Appointments"}
+
+@app.post("/appointments", tags=["MediFast"])
+def createAppointments(aid):
+    return {"message" : "Appointments"}
+
+@app.put("/appointments", tags=["MediFast"])
+def editAppointments(aid):
     return {"message" : "Appointments"}

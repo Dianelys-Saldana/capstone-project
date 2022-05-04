@@ -18,7 +18,7 @@ class BaseUsers:
             "uFirstName" : row[3],
             "uLastName" : row[4],
             "usertype" : row[5],
-            "phone" : row[6]
+            "phone" : row[6],
         }
         return result
 
@@ -28,11 +28,12 @@ class BaseUsers:
         hash_uPassword = generate_password_hash(uPassword, method='sha256')
         if checkUser is None:
             uId = dao.createUser(uFirstName, uLastName, uEmail, hash_uPassword, usertype, phone)
-            result = self.build_row_dict((uId,uFirstName, uLastName, uEmail, hash_uPassword, usertype, phone))
+            result = self.build_row_dict((uId, uEmail, hash_uPassword, uFirstName, uLastName, usertype, phone))
+            print(result)
             return jsonify({
-                    'status' : "Success",
-                    'body': result
-            })
+                    "status": "Success",
+                    "body": result
+                    })
         else:
             return jsonify("Error"), 401
     
