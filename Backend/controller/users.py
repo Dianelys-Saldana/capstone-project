@@ -1,7 +1,7 @@
 import json
 from config.dbconfig import pg_config
 import psycopg2
-from werkzeug.security import generate_password_hash, check_password_hash
+# from werkzeug.security import generate_password_hash, check_password_hash
 from model.user import UsersDAO
 from fastapi.encoders import jsonable_encoder as jsonify
 
@@ -25,10 +25,10 @@ class BaseUsers:
     def createUser(self, uFirstName, uLastName, uEmail, uPassword, usertype, phone):
         dao = UsersDAO()
         checkUser = dao.getUserInfo(uEmail)
-        hash_uPassword = generate_password_hash(uPassword, method='sha256')
+        # hash_uPassword = generate_password_hash(uPassword, method='sha256')
         if checkUser is None:
-            uId = dao.createUser(uFirstName, uLastName, uEmail, hash_uPassword, usertype, phone)
-            result = self.build_row_dict((uId, uEmail, hash_uPassword, uFirstName, uLastName, usertype, phone))
+            uId = dao.createUser(uFirstName, uLastName, uEmail, uPassword, usertype, phone)
+            result = self.build_row_dict((uId, uEmail, uPassword, uFirstName, uLastName, usertype, phone))
             print(result)
             return jsonify({
                     "status": "Success",

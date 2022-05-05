@@ -22,10 +22,12 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../typ
 import LinkingConfiguration from './LinkingConfiguration';
 import Specialty from '../screens/SpecialtyScreen';
 import Specialist from '../screens/SpecialistScreen';
-import Booking from '../screens/BookingScreen';
+import Calendar from '../screens/CalendarScreen';
 import Success from '../screens/Success';
 import Reviews from '../screens/ReviewsScreen';
 import Chat from '../screens/ChatScreen';
+import ChatTab from '../screens/ChatGeneralScreen';
+import Booking from '../screens/BookingScreen';
  
  export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
    return (
@@ -46,7 +48,7 @@ import Chat from '../screens/ChatScreen';
  function RootNavigator() {
    return (
      <Stack.Navigator>
-       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+       <Stack.Screen name="Root" component={RegisterStackScreen} options={{ headerShown: false }} />
        <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
        <Stack.Group screenOptions={{ presentation: 'modal' }}>
          <Stack.Screen name="Modal" component={ModalScreen} />
@@ -56,13 +58,13 @@ import Chat from '../screens/ChatScreen';
        <Stack.Screen name="Success" component={Success} options={{ headerShown: false }} />
        <Stack.Screen name="Reviews" component={Reviews} options={{ headerShown: false }} />
 
-       <Stack.Screen name="SignIn" component={LoginScreen} options={{ headerShown: false }} />
-       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+       {/* <Stack.Screen name="SignIn" component={LoginScreen} options={{ headerShown: false }} />
+       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} /> */}
 
-       {/* <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} /> */}
-       {/* <Stack.Screen name="Booking" component={Booking} options={{ headerShown: false }} />
+       <Stack.Screen name="Dashboard" component={BottomTabNavigator} options={{ headerShown: false }} />
        <Stack.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
-       <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} /> */}
+       <Stack.Screen name="Booking" component={Booking} options={{ headerShown: false }} />
+       {/* <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} /> */}
      </Stack.Navigator>
    );
  }
@@ -72,13 +74,14 @@ import Chat from '../screens/ChatScreen';
   * https://reactnavigation.org/docs/bottom-tab-navigator
   */
  const BottomTab = createBottomTabNavigator<RootTabParamList>();
- 
+
  function BottomTabNavigator() {
    const colorScheme = useColorScheme();
  
    return (
+
      <BottomTab.Navigator
-       initialRouteName="Dashboard"
+       initialRouteName="DashboardTab"
        screenOptions={{
          tabBarActiveTintColor: Colors[colorScheme].tint,
          tabBarIconStyle: { display: "none" },
@@ -86,12 +89,13 @@ import Chat from '../screens/ChatScreen';
           fontSize: 15,
           fontWeight: 'bold',
         },
+        
        }}>
-     
+
        <BottomTab.Screen
-         name="Dashboard"
+         name="DashboardTab"
          component={Dashboard}
-         options={({ navigation }: RootTabScreenProps<'Dashboard'>) => ({
+         options={({ navigation }: RootTabScreenProps<'DashboardTab'>) => ({
            title: 'Dash',
            headerShown: false,
            
@@ -113,8 +117,8 @@ import Chat from '../screens/ChatScreen';
          })}
        />
        <BottomTab.Screen
-         name="Chat"
-         component={Chat}
+         name="ChatTab"
+         component={ChatTab}
          options={{
            title: 'Chat',
            headerShown: false,
@@ -122,16 +126,16 @@ import Chat from '../screens/ChatScreen';
          }}
        />
        <BottomTab.Screen
-         name="Booking"
-         component={Booking}
+         name="CalendarTab"
+         component={Calendar}
          options={{
-           title: 'Booking',
+           title: 'Calendar',
            headerShown: false,
            // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
          }}
        />
        <BottomTab.Screen
-         name="Profile"
+         name="ProfileTab"
          component={Profile}
          options={{
            title: 'Profile',
@@ -142,6 +146,17 @@ import Chat from '../screens/ChatScreen';
      </BottomTab.Navigator>
    );
  }
+
+ const RegisterStack = createNativeStackNavigator();
+
+function RegisterStackScreen() {
+  return (
+    <RegisterStack.Navigator>
+      <RegisterStack.Screen name="SignIn" component={LoginScreen} options={{ headerShown: false }}/>
+      <RegisterStack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }}/>
+    </RegisterStack.Navigator>
+  );
+}
 
 
 //  /**

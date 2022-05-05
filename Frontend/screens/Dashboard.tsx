@@ -7,7 +7,7 @@ import { RootTabScreenProps } from '../types';
 import BackButton from '../components/BackButton';
 import SearchBar from "react-native-dynamic-search-bar";
 
-export default function Dashboard({ navigation }: RootTabScreenProps<'Dashboard'>) {
+export default function Dashboard({ navigation }: RootTabScreenProps<'DashboardTab'>) {
   return (
     <View style={styles.container}> 
     {/* <BackButton goBack={() => navigation.navigate('SignUp')} /> */}
@@ -23,13 +23,13 @@ export default function Dashboard({ navigation }: RootTabScreenProps<'Dashboard'
             <Text style={styles.medicalSpec}>Medical Specialties</Text>
             <Text style={styles.see}>See all</Text>
 
-            <Pressable style={[styles.specBox,{position: 'absolute'}]} onPress={() => navigation.navigate('SignIn')}> 
+            <Pressable style={[styles.specBox,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialist')}> 
             {/* TODO: Cambiar ruta a Specialty */}
                 <Text style={styles.cardio}>Cardiology</Text>
                 <Image style={styles.cardioIcon} source={require('../assets/images/cardio.png')}/>
             </Pressable>
 
-            <Pressable style={[styles.specBox2,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialist')}> 
+            <Pressable style={[styles.specBox2,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
                 <Text style={styles.derma}>Dermatology</Text>
                 <Image style={styles.dermaIcon} source={require('../assets/images/derma.png')}/>
             </Pressable>

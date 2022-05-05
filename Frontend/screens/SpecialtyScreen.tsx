@@ -67,7 +67,7 @@ function Item({ id, name, rating, planes, location } :
   );
 }
 
-export default function Specialty({ navigation }: RootTabScreenProps<'SignIn'>) {
+export default function Specialty({ navigation }: RootTabScreenProps<'DashboardTab'>) {
   const [selected, setSelected] = React.useState(new Map());
 
   const onSelect = React.useCallback(

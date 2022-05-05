@@ -33,7 +33,7 @@ function Item({ id, patient, rating, review } : { id: string, patient: string, r
     );
 }   
 
-export default function Reviews({ navigation }: RootTabScreenProps<'SignIn'>) {
+export default function Reviews({ navigation }: RootTabScreenProps<'DashboardTab'>) {
     
     return (
         <SafeAreaView style={styles.container}>

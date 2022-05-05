@@ -11,21 +11,21 @@ import { Calendar, CalendarList } from 'react-native-calendars';
 import dateFns from 'date-fns';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
-export default function Booking({ navigation }: RootTabScreenProps<'CalendarTab'>) {
+export default function CalendarScreen({ navigation }: RootTabScreenProps<'CalendarTab'>) {
   
   return (
     // <ScrollView showsVerticalScrollIndicator={false}> 
     <View style={styles.container}>
-    <BackButton goBack={() => navigation.navigate('Specialist') } />
+    {/* <BackButton goBack={() => navigation.navigate('Specialist') } /> */}
     {/* TODO: Cambiar ruta a Specialty */}
         
 
         <Calendar style={styles.calendar}></Calendar>
       
-        <Pressable onPress={() => navigation.navigate('Success')} style={styles.btn}>
+        {/* <Pressable onPress={() => navigation.navigate('Success')} style={styles.btn}> */}
             {/* TODO: Cambiar a Confirm */}
-            <Text style={styles.btntext}>Confirm Appointment</Text>
-        </Pressable>
+            {/* <Text style={styles.btntext}>Confirm Appointment</Text> */}
+        {/* </Pressable> */}
 
     </View>
     // </ScrollView>

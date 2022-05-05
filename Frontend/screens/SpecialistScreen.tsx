@@ -23,7 +23,7 @@ const pin = {
     longitudeDelta: 0.0421,
 };
 
-export default function Specialist({ navigation }: RootTabScreenProps<'SignIn'>) {
+export default function Specialist({ navigation }: RootTabScreenProps<'DashboardTab'>) {
 
   return (
     // <ScrollView showsVerticalScrollIndicator={false}> 

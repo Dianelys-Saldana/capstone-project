@@ -4,7 +4,7 @@ import { Image, StyleSheet, TextInput, Button, Pressable} from 'react-native';
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
-export default function Profile({ navigation }: RootTabScreenProps<'Dashboard'>) {
+export default function Profile({ navigation }: RootTabScreenProps<'ProfileTab'>) {
   return (
     <View style={styles.container}> 
         <Text>Profile</Text>

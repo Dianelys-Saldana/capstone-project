@@ -11,7 +11,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Ionicons } from "@expo/vector-icons";
 import { emailValidator, passwordValidator, nameValidator, lastNameValidator} from '../core/utils';
 
-export default function SignUpScreen({ navigation }: RootTabScreenProps<'Dashboard'>) {
+export default function SignUpScreen({ navigation }: RootTabScreenProps<'DashboardTab'>) {
   const [uFirstName, setName] = useState('');
   const [uLastName, setLastName] = useState('');
   const [uEmail, setEmail] = useState('');
@@ -152,8 +152,8 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'Dashboa
         >
         </TextInput>
       
-      {/* <Pressable style={styles.signup} onPress={_onSignUpPressed}> */}
-      <Pressable style={styles.signup} onPress={() => navigation.navigate('Dashboard')}>  
+      <Pressable style={styles.signup} onPress={_onSignUpPressed}>
+      {/* <Pressable style={styles.signup} onPress={() => navigation.navigate('Dashboard')}>   */}
         <Text style={styles.signuptext}>Sign up</Text>
       </Pressable>
 

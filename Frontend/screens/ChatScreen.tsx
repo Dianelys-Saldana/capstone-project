@@ -14,7 +14,7 @@ import {
 import { RootTabScreenProps } from '../types';
 import BackButton from '../components/BackButton';
 
-export default function ChatScreen({ navigation }: RootTabScreenProps<'Chat'>) {
+export default function ChatScreen({ navigation }: RootTabScreenProps<'ChatTab'>) {
 <BackButton goBack={() => navigation.navigate('Specialist') } />
 
 const [text, setText] = useState('');

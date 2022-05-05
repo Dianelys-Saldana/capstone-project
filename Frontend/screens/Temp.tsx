@@ -49,7 +49,7 @@ const DATA = [
   // }
 ];
 
-export default function SendMessage({ navigation }: RootTabScreenProps<'SignIn'>) {
+export default function Temp({ navigation }: RootTabScreenProps<'ChatTab'>) {
   return (
     <SafeAreaView style={styles.container}>
       <BackButton goBack={() => navigation.navigate('Dashboard')} />
