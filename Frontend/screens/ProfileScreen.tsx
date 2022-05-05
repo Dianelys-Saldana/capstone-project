@@ -4,96 +4,10 @@ import { Image, StyleSheet, TextInput, Button, Pressable} from 'react-native';
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
-export default function Profile({ navigation }: RootTabScreenProps<'SignIn'>) {
+export default function Profile({ navigation }: RootTabScreenProps<'Dashboard'>) {
   return (
     <View style={styles.container}> 
-        <View style={[styles.box,{position: 'absolute'}]}> 
-            <Text style={styles.medicalSpec}>Medical Specialties</Text>
-            <Text style={styles.see}>See all</Text>
-
-            <View style={[styles.specBox,{position: 'absolute'}]}>
-                <Text style={styles.cardio}>Cardiology</Text>
-                <Image style={styles.cardioIcon} source={require('../assets/images/cardio.png')}/>
-            </View>
-
-            <View style={[styles.specBox2,{position: 'absolute'}]}>
-                <Text style={styles.derma}>Dermatology</Text>
-                <Image style={styles.dermaIcon} source={require('../assets/images/derma.png')}/>
-            </View>
-
-            <View style={[styles.specBox3,{position: 'absolute'}]}>
-                <Text style={styles.gyn}>Gynecology</Text>
-                <Image style={styles.gynIcon} source={require('../assets/images/gyn.png')}/>
-            </View>
-
-            <View style={[styles.specBox4,{position: 'absolute'}]}>
-                <Text style={styles.neuro}>Neurology</Text>
-                <Image style={styles.neuroIcon} source={require('../assets/images/neuro.png')}/>
-            </View>
-
-            <View style={[styles.specBox5,{position: 'absolute'}]}>
-                <Text style={styles.ofta}>Ophthalmology</Text>
-                <Image style={styles.oftaIcon} source={require('../assets/images/ofta.png')}/>
-            </View>
-
-            <View style={[styles.specBox6,{position: 'absolute'}]}>
-                <Text style={styles.pedi}>Pediatrics</Text>
-                <Image style={styles.pediIcon} source={require('../assets/images/pedi.png')}/>
-            </View>
-
-            <View style={[styles.specBox7,{position: 'absolute'}]}>
-                <Text style={styles.psi}>Psychology</Text>
-                <Image style={styles.psiIcon} source={require('../assets/images/psi.png')}/>
-            </View>
-
-            <View style={[styles.specBox8,{position: 'absolute'}]}>
-                <Text style={styles.psy}>Psychiatry</Text>
-                <Image style={styles.psyIcon} source={require('../assets/images/psy.png')}/>
-            </View>
-
-            <View style={[styles.specBox9,{position: 'absolute'}]}>
-                <Text style={styles.uro}>Urology</Text>
-                <Image style={styles.uroIcon} source={require('../assets/images/uro.png')}/>
-            </View>
-
-        </View>
-
-        <View style={[styles.box2,{position: 'absolute'}]}> 
-            <Text style={styles.wellSpec}>Wellness and Other Services</Text>
-            <Text style={styles.see2}>See all</Text>
-
-            <View style={[styles.wellBox,{position: 'absolute'}]}>
-                <Text style={styles.chiro}>Chiropractic</Text>
-                <Image style={styles.chiroIcon} source={require('../assets/images/chiro.png')}/>
-            </View>
-
-            <View style={[styles.wellBox2,{position: 'absolute'}]}>
-                <Text style={styles.massage}>Massaging</Text>
-                <Image style={styles.massageIcon} source={require('../assets/images/massage.png')}/>
-            </View>
-
-            <View style={[styles.wellBox3,{position: 'absolute'}]}>
-                <Text style={styles.pt}>Personal Training</Text>
-                <Image style={styles.ptIcon} source={require('../assets/images/pt.png')}/>
-            </View>
-
-            <View style={[styles.wellBox4,{position: 'absolute'}]}>
-                <Text style={styles.hn}>Home Nurse</Text>
-                <Image style={styles.hnIcon} source={require('../assets/images/hn.png')}/>
-            </View>
-
-            <View style={[styles.wellBox5,{position: 'absolute'}]}>
-                <Text style={styles.wl}>Weight Loss</Text>
-                <Image style={styles.wlIcon} source={require('../assets/images/wl.png')}/>
-            </View>
-
-            <View style={[styles.wellBox6,{position: 'absolute'}]}>
-                <Text style={styles.add}>Add</Text>
-                <Image style={styles.addIcon} source={require('../assets/images/add.png')}/>
-            </View>
-
-        </View>
-
+        <Text>Profile</Text>
     </View>
   );
 }

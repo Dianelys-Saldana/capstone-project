@@ -1,12 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, TextInput, Button, Pressable} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View} from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
+import Server from '../services/serverRoutes';
+import Auth from '../services/authentication';
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'SignIn'>) {
+export default function LoginScreen({ navigation }: RootTabScreenProps<'SignIn'>) {
+
+  const [uEmail, setEmail] = useState('');
+  const [uPassword, setPassword] = useState('');
+
+  const _onLoginPressed = async () => {
+
+    const formData = { uEmail, uPassword };
+
+    // fetch('http://127.0.0.1:8000/login', {
+    //   method: 'GET',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    await Server.login(JSON.stringify(formData)).then((res) => {
+      console.log('auth res:', JSON.stringify(res));
+      console.log(formData)
+      if (res.ok) {
+        Auth.login(true, uEmail, uPassword);
+        res.json().then((data: any) => {
+          console.log(data);
+          navigation &&
+            navigation.navigate('Dashboard');
+        });
+      }
+    });
+  }
+
   return (
     <View style={styles.container}>
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
@@ -14,17 +44,26 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'SignIn'
       <Text style={styles.welcome}>Welcome Back!</Text>
 
       <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
-      <TextInput style={styles.email} placeholder={'Email'}></TextInput>
+        <TextInput 
+          style={styles.email} 
+          placeholder={'Email'}
+          placeholderTextColor="#0E7979"
+          onChangeText={text => setEmail(text)}
+          >
+        </TextInput>
       
       <Image style={styles.passIcon} source={require('../assets/images/pass.png')}/>
-      <TextInput 
-        style={styles.pass} 
-        placeholder={'Password'}
-        secureTextEntry 
-      ></TextInput>
+        <TextInput 
+          style={styles.pass} 
+          placeholder={'Password'}
+          placeholderTextColor="#0E7979"
+          secureTextEntry 
+          onChangeText={text => setPassword(text)}
+        ></TextInput>
+
       <Text style={styles.forgot}>Forgot Password?</Text>
       
-      <Pressable style={styles.loginBtn} onPress={() => navigation.navigate('Dashboard')}> 
+      <Pressable style={styles.loginBtn} onPress={_onLoginPressed}> 
         <Text style={styles.loginText}>Login</Text>
       </Pressable>
 
