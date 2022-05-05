@@ -6,7 +6,7 @@ from model.user import UsersDAO
 from fastapi.encoders import jsonable_encoder as jsonify
 
 class BaseUsers:
-    def _init_ (self):
+    def __init__ (self):
         connection_url = "dbname=%s user=%s password=%s port=%s host=%s" % (pg_config["database"], pg_config["username"], pg_config["password"], pg_config["port"], pg_config["host"])
         self.conn = psycopg2.connect(connection_url)
 
@@ -35,7 +35,7 @@ class BaseUsers:
                     })
         else:
             return jsonify("Error"), 401
-    
+   
     def login(self, uEmail, uPassword):
         dao = UsersDAO()
         user = dao.getUserInfo(uEmail)
@@ -76,7 +76,7 @@ class BaseUsers:
                 return jsonify("ACCOUNT DELETED"), 200
             else:
                 return jsonify("NOT FOUND"), 404
-    
+   
     def updateUser(self, uid, uFirstName, uLastName, uEmail, uPassword):
         dao = UsersDAO()
         if True:
@@ -90,7 +90,7 @@ class BaseUsers:
         #             'status' : "Error",
         #             'message': 'Wrong email or password '
         #         }), 404
-    
+   
     def checkIfProfessional(self, uid):
         dao = UsersDAO()
         urole = dao.checkIfProfessional(uid)
