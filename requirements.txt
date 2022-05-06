@@ -18,6 +18,7 @@ Cython==0.29.28
 debugpy==1.6.0
 decorator==5.1.1
 defusedxml==0.7.1
+email-validator==1.2.1
 entrypoints==0.4
 executing==0.8.3
 fastapi==0.75.1
@@ -76,7 +77,7 @@ pytz==2022.1
 pywin32==303
 pywinpty==2.0.5
 PyYAML==6.0
-pyzmq==19.0.2
+pyzmq
 qtconsole==5.3.0
 QtPy==2.0.1
 requests==2.27.1
