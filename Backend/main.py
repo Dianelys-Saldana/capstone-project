@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from requests import request
-import requests
 from controller.users import BaseUsers
+from controller.appointments import BaseAppointments
 
 class User(BaseModel):
     uFirstName: str
@@ -22,6 +21,14 @@ class UserUpdate(BaseModel):
     uEmail: str
     uPassword: str
 
+class Appointment(BaseModel):
+    userid: str
+    pid: str
+    officeid: str
+    day: str
+    starttime: str
+    endtime: str
+
 app = FastAPI()
 
 @app.get("/", tags=["MediFast"])
@@ -29,7 +36,8 @@ async def home():
     return {"message" : "Welcome to MediFast"}
 
 @app.get("/profile", tags=["MediFast"])
-async def profile():
+async def profile(user: User):
+    BaseUsers.getUser(user.uEmail)
     return {"message" : "Profile"}
 
 @app.get("/login", tags=["MediFast"])
@@ -43,22 +51,31 @@ async def signup(user: User):
 
 @app.put("/editprofile", tags=["MediFast"])
 async def editProfile(user: UserUpdate):
-    BaseUsers().getUserID(user.uEmail, user.uFirstName, user.uLastName)
-    BaseUsers().updateUser(user.uFirstName, user.uLastName, user.uEmail, user.uPassword)
+    userId = BaseUsers().getUserID(user.uEmail)
+    BaseUsers().updateUser(userId, user.uFirstName, user.uLastName, user.uEmail, user.uPassword)
     return {"message" : "Edit Account"}
 
 @app.delete("/deleteprofile", tags=["MediFast"])
-async def delete():
+async def delete(user : User):
+    BaseUsers.deleteUser(user.uEmail)
     return {"message" : "Delete Account"}
 
 @app.get("/appointments", tags=["MediFast"])
-def appointments(aid):
+def lookupAppointments(aid: Appointment):
+    BaseAppointments.lookupAppointments()
     return {"message" : "Appointments"}
 
 @app.post("/appointments", tags=["MediFast"])
-def createAppointments(aid):
+def createAppointments(aid: Appointment):
+    BaseAppointments.createAppointment(aid.userid, aid.pid, aid.officeid, aid.day, aid.starttime, aid.endtime)
     return {"message" : "Appointments"}
 
 @app.put("/appointments", tags=["MediFast"])
-def editAppointments(aid):
+def editAppointments(aid: Appointment):
+    BaseAppointments.editAppointment()
     return {"message" : "Appointments"}
+
+@app.delete("/appointments", tags=["MediFast"])
+def deleteAppointments(aid: Appointment):
+    BaseAppointments.deleteAppointment()
+    return {"message":"Appointments"}

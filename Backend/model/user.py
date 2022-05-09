@@ -20,6 +20,8 @@ class UsersDAO:
         cursor = self.conn.cursor()
         query = "select * from users where email = %s;"
         result = cursor.execute(query, (email,))
+        self.conn.commit()
+        self.conn.close()
         return jsonify(result)
 
     def deleteUser(self, uid):
@@ -32,7 +34,7 @@ class UsersDAO:
         return affectedRows != 0
 
     def updateUser(self, uid, uFirstName, uLastName, uEmail, uPassword):
-        query = "update users set uFirstName=%s, uLastName=%s, uEmail=%s, uPassword=%s, where uid=%s"
+        query = "update users set ufirstname=%s, ulastname=%s, email=%s, password=%s where uid=%s"
         cursor = self.conn.cursor()
         cursor.execute(query, (uFirstName, uLastName, uEmail, uPassword, uid,))
         self.conn.commit()
@@ -40,7 +42,7 @@ class UsersDAO:
         return True
 
     def checkIfProfessional(self, uid):
-        query = "select pid from professional where uid=%s"
+        query = "select pid from professionals where userid=%s"
         cursor = self.conn.cursor()
         cursor.execute(query, (uid,))
         urole = cursor.fetchone()[0]

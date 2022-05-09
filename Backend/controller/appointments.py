@@ -4,7 +4,7 @@ import psycopg2
 from model.appointment import AppointmentDAO
 from fastapi.encoders import jsonable_encoder as jsonify
 
-class BaseUsers:
+class BaseAppointments:
     def __init__ (self):
         connection_url = "dbname=%s user=%s password=%s port=%s host=%s" % (pg_config["database"], pg_config["username"], pg_config["password"], pg_config["port"], pg_config["host"])
         self.conn = psycopg2.connect(connection_url)
@@ -29,5 +29,17 @@ class BaseUsers:
                 'status': "Success",
                 'body': result
         })
+    
+    def lookupAppointments(self, userId, pId, officeId, day, starttime, endtime):
+        dao = AppointmentDAO()
+        return
+    
+    def editAppointment(self, userId, pId, officeId, day, starttime, endtime):
+        dao = AppointmentDAO()
+        return
+    
+    def deleteAppointment(self, aid):
+        dao = AppointmentDAO()
+        return
     
     
