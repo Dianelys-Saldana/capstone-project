@@ -16,10 +16,10 @@ class ProfessionalDAO:
         self.conn.close()
         return pid
     
-    def getProfessional(self, profession, uid):
+    def getProfessional(self, profession):
         cursor = self.conn.cursor()
-        query = "select * from professionals where profession = %s and userid = %s"
-        result = cursor.execute(query, (profession, uid,))
+        query = "select * from professionals where profession = %s"
+        result = cursor.execute(query, (profession,))
         self.conn.commit()
         self.conn.close()
         return jsonify(result)
