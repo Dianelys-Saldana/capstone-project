@@ -35,6 +35,7 @@ app = FastAPI()
 async def home():
     return {"message" : "Welcome to MediFast"}
 
+#User
 @app.get("/profile", tags=["MediFast"])
 async def profile(user: User):
     BaseUsers.getUser(user.uEmail)
@@ -60,6 +61,7 @@ async def delete(user : User):
     BaseUsers.deleteUser(user.uEmail)
     return {"message" : "Delete Account"}
 
+#Appointment
 @app.get("/appointments", tags=["MediFast"])
 def lookupAppointments(aid: Appointment):
     BaseAppointments.lookupAppointments()
@@ -79,3 +81,45 @@ def editAppointments(aid: Appointment):
 def deleteAppointments(aid: Appointment):
     BaseAppointments.deleteAppointment()
     return {"message":"Appointments"}
+
+#Professional
+@app.post("/professional", tags=["MediFast"])
+def createProfessional():
+    return {"message":"Professional"}
+@app.get("/professional", tags=["MediFast"])
+def getProfessional():
+    return {"message":"Professional"}
+@app.put("/professional", tags=["MediFast"])
+def updateProfessional():
+    return {"message":"Professional"}
+@app.delete("/professional", tags=["MediFast"])
+def deleteProfessional():
+    return {"message":"Professional"}
+
+#UserInfo
+@app.post("/userinfo", tags=["MediFast"])
+def addUserInfo():
+    return {"message":"UserInfo"}
+@app.get("/userinfo", tags=["MediFast"])
+def getUserInfo():
+    return {"message":"UserInfo"}
+@app.put()("/userinfo", tags=["MediFast"])
+def updateUserInfo():
+    return {"message":"UserInfo"}
+@app.delete()("/userinfo", tags=["MediFast"])
+def deleteUserInfo():
+    return {"message":"UserInfo"}
+
+#Office
+@app.post("/office", tags=["MediFast"])
+def addOffice():
+    return {"message":"Office"}
+@app.get("/office", tags=["MediFast"])
+def addOffice():
+    return {"message":"Office"}
+@app.put("/office", tags=["MediFast"])
+def addOffice():
+    return {"message":"Office"}
+@app.delete("/office", tags=["MediFast"])
+def addOffice():
+    return {"message":"Office"}
