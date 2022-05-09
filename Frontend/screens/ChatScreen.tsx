@@ -15,7 +15,7 @@ import { RootTabScreenProps } from '../types';
 import BackButton from '../components/BackButton';
 
 export default function ChatScreen({ navigation }: RootTabScreenProps<'ChatTab'>) {
-<BackButton goBack={() => navigation.navigate('Specialist') } />
+// {/* <BackButton goBack={() => navigation.navigate('Specialist') } /> */}
 
 const [text, setText] = useState('');
 const [messages, setMessages] = useState([]);
@@ -29,6 +29,7 @@ const onSend = (newMessages = []) => {
 
     return (
         <GiftedChat
+            // keyboardShouldPersistTaps='never'
             messages={messages}
             text={text}
             onInputTextChanged={setText}

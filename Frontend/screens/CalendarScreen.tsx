@@ -1,99 +1,131 @@
-import React, { Component, useState } from 'react';
-import { Image, StyleSheet, ScrollView, TextInput, Button, Pressable} from 'react-native';
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View} from '../components/Themed';
-import { RootTabScreenProps } from '../types';
-import BackButton from '../components/BackButton';
-import { AppointmentPicker } from "react-appointment-picker";
-import DatePickerComponent from '@syncfusion/ej2-react-calendars'
-import { DayPicker } from 'react-day-picker';
-import { Calendar, CalendarList } from 'react-native-calendars';
-import dateFns from 'date-fns';
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import React, {Component} from 'react';
+import {Alert, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Agenda, DateData, AgendaEntry, AgendaSchedule} from 'react-native-calendars';
+import testIDs from '../tests/testIDs';
 
-export default function CalendarScreen({ navigation }: RootTabScreenProps<'CalendarTab'>) {
-  
-  return (
-    // <ScrollView showsVerticalScrollIndicator={false}> 
-    <View style={styles.container}>
-    {/* <BackButton goBack={() => navigation.navigate('Specialist') } /> */}
-    {/* TODO: Cambiar ruta a Specialty */}
-        
-
-        <Calendar style={styles.calendar}></Calendar>
-      
-        {/* <Pressable onPress={() => navigation.navigate('Success')} style={styles.btn}> */}
-            {/* TODO: Cambiar a Confirm */}
-            {/* <Text style={styles.btntext}>Confirm Appointment</Text> */}
-        {/* </Pressable> */}
-
-    </View>
-    // </ScrollView>
-  );
+interface State {
+  items?: AgendaSchedule;
 }
- 
+
+export default class CalendarScreen extends Component<State> {
+  state: State = {
+    items: undefined
+  };
+
+  render() {
+    return (
+      <Agenda
+        testID={testIDs.agenda.CONTAINER}
+        items={this.state.items}
+        // items={{
+        //   '2022-05-22': [],
+        //   '2012-05-23': [],
+        //   '2012-05-24': [],
+        //   '2012-05-25': []
+        // }}
+        loadItemsForMonth={this.loadItems}
+        selected={'2022-05-07'} //update
+        renderItem={this.renderItem}
+        renderEmptyDate={this.renderEmptyDate}
+        rowHasChanged={this.rowHasChanged}
+        showClosingKnob={true}
+        // markingType={'period'}
+        // markedDates={{
+        //    '2017-05-08': {textColor: '#43515c'},
+        //    '2017-05-09': {textColor: '#43515c'},
+        //    '2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
+        //    '2017-05-21': {startingDay: true, color: 'blue'},
+        //    '2017-05-22': {endingDay: true, color: 'gray'},
+        //    '2017-05-24': {startingDay: true, color: 'gray'},
+        //    '2017-05-25': {color: 'gray'},
+        //    '2017-05-26': {endingDay: true, color: 'gray'}}}
+        // monthFormat={'yyyy'}
+        // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
+        //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
+        // hideExtraDays={false}
+        // showOnlySelectedDayItems
+      />
+    );
+  }
+
+  loadItems = (day: DateData) => {
+    const items = this.state.items || {};
+
+    setTimeout(() => {
+      for (let i = -15; i < 85; i++) {
+        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+        const strTime = this.timeToString(time);
+
+        if (!items[strTime]) {
+          items[strTime] = [];
+          
+          const numItems = Math.floor(Math.random() * 3 + 1);
+          // for (let j = 0; j < numItems; j++) {
+            items[strTime].push({
+              // name: 'Item for ' + strTime + ' #' + j,
+              name: 'Cita Dr.',
+              height: Math.max(50, Math.floor(Math.random() * 150)),
+              day: strTime
+            });
+          // }
+        }
+      }
+      
+      const newItems: AgendaSchedule = {};
+      Object.keys(items).forEach(key => {
+        newItems[key] = items[key];
+      });
+      this.setState({
+        items: newItems
+      });
+    }, 1000);
+  }
+
+  renderItem = (reservation: AgendaEntry, isFirst: boolean) => {
+    const fontSize = isFirst ? 16 : 14;
+    const color = isFirst ? 'black' : '#43515c';
+
+    return (
+      <TouchableOpacity
+        testID={testIDs.agenda.ITEM}
+        style={[styles.item, {height: reservation.height}]}
+        onPress={() => Alert.alert(reservation.name)}
+      >
+        <Text style={{fontSize, color}}>{reservation.name}</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  renderEmptyDate = () => {
+    return (
+      <View style={styles.emptyDate}>
+        <Text>This is empty date!</Text>
+      </View>
+    );
+  }
+
+  rowHasChanged = (r1: AgendaEntry, r2: AgendaEntry) => {
+    return r1.name !== r2.name;
+  }
+
+  timeToString(time: number) {
+    const date = new Date(time);
+    return date.toISOString().split('T')[0];
+  }
+}
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    // justifyContent: 'center',
-    backgroundColor: '#F5F3EF',
-  },
   item: {
-    padding: 20,
-    marginVertical: 8,
-    flexDirection: "row",
-    
-    backgroundColor: '#C0DEDD',
-    position: 'absolute',
-    borderRadius: 40,
-    width: 357,
-    height: 136,
-    left: 27.5,
-    top: 100,
+    backgroundColor: 'white',
+    flex: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17
   },
-  iconBox: {
-    height: 100,
-    width: 100,
-    top: 20,
-    left: 20,
-    padding: 20,
-    borderRadius: 40,
-    flexDirection: "row",
-    position: 'absolute',
-    backgroundColor: '#22A7A7',
-  },
-  icon: {
-    position: 'absolute',
-    width: 50,
-    height: 50,
-    top: 23,
-    left: 25,
-  },
-  btn: {
-    position: 'absolute',
-    alignItems: 'center',
-    // justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 33,
-    elevation: 3,
-    backgroundColor: '#22A7A7',
-    width: 245,
-    top: 740,
-    left: 85,
-  },
-  btntext: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-  calendar: {
-    // position: 'absolute',
-    // flex: 1,
-    top: 100,
-    width: 350,
-  },
+  emptyDate: {
+    height: 15,
+    flex: 1,
+    paddingTop: 30
+  }
 });

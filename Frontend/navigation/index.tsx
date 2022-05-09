@@ -3,12 +3,12 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Feather, FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { createBottomTabNavigator, } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, Image, StyleSheet, View } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -28,6 +28,14 @@ import Reviews from '../screens/ReviewsScreen';
 import Chat from '../screens/ChatScreen';
 import ChatTab from '../screens/ChatGeneralScreen';
 import Booking from '../screens/BookingScreen';
+import Patient from '../screens/PatientInfoScreen';
+import Professional from '../screens/ProfessionalInfoScreen';
+import OnboardingOne from '../screens/OnboardingOne';
+import OnboardingTwo from '../screens/OnboardingTwo';
+import OnboardingThree from '../screens/OnboardingThree';
+import AboutScreen from '../screens/AboutScreen';
+import PersonalScreen from '../screens/PersonalScreen';
+import PrivacyPolicy from '../screens/PrivacyPolicyScreen';
  
  export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
    return (
@@ -53,18 +61,54 @@ import Booking from '../screens/BookingScreen';
        <Stack.Group screenOptions={{ presentation: 'modal' }}>
          <Stack.Screen name="Modal" component={ModalScreen} />
        </Stack.Group>
+       <Stack.Screen name="Dashboard" component={BottomTabNavigator} options={{ headerShown: false }} />
        <Stack.Screen name="Specialty" component={Specialty} options={{ headerShown: false }} />
        <Stack.Screen name="Specialist" component={Specialist} options={{ headerShown: false }} />
        <Stack.Screen name="Success" component={Success} options={{ headerShown: false }} />
        <Stack.Screen name="Reviews" component={Reviews} options={{ headerShown: false }} />
-
-       {/* <Stack.Screen name="SignIn" component={LoginScreen} options={{ headerShown: false }} />
-       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} /> */}
-
-       <Stack.Screen name="Dashboard" component={BottomTabNavigator} options={{ headerShown: false }} />
-       <Stack.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
-       <Stack.Screen name="Booking" component={Booking} options={{ headerShown: false }} />
-       {/* <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} /> */}
+       <Stack.Screen name="Professional" component={Professional} options={{ headerShown: false }} />
+       <Stack.Screen name="Patient" component={Patient} 
+        options={{ 
+          headerShown: true, 
+          title: 'Edit Personal Information', 
+          headerBackTitleVisible: false
+        }} />
+       <Stack.Screen name="Booking" component={Booking} 
+        options={{ 
+          headerShown: true, 
+          title: 'Book Appointment', 
+          headerBackTitleVisible: false
+        }} />
+       <Stack.Screen name="Chat" component={Chat} 
+        options={{ 
+          headerShown: true,
+          headerStyle: {
+          backgroundColor: '#323337',
+        },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }} />
+      <Stack.Screen name="Personal" component={PersonalScreen} 
+        options={{ 
+          headerShown: true, 
+          title: 'Personal Information', 
+          headerBackTitleVisible: false
+        }} />
+      <Stack.Screen name="About" component={AboutScreen}
+        options={{ 
+          headerShown: true, 
+          title: 'About MediFast', 
+          headerBackTitleVisible: false,
+        }} />
+      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy}
+        options={{ 
+          headerShown: true, 
+          title: 'Privacy Policy', 
+          headerBackTitleVisible: false,
+        }} />
+      {/* <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} /> */}
      </Stack.Navigator>
    );
  }
@@ -83,35 +127,24 @@ import Booking from '../screens/BookingScreen';
      <BottomTab.Navigator
        initialRouteName="DashboardTab"
        screenOptions={{
-         tabBarActiveTintColor: Colors[colorScheme].tint,
-         tabBarIconStyle: { display: "none" },
-         tabBarLabelStyle: {
-          fontSize: 15,
-          fontWeight: 'bold',
-        },
-        
+         tabBarActiveTintColor: '#0074B7',
        }}>
 
        <BottomTab.Screen
          name="DashboardTab"
          component={Dashboard}
          options={({ navigation }: RootTabScreenProps<'DashboardTab'>) => ({
-           title: 'Dash',
+           title: 'Dashboard',
+           tabBarShowLabel: false,
            headerShown: false,
+           tabBarIcon: ({ color }) => <Ionicons name="ios-home-outline" size={24} color={color} />,
            
-           // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
            headerRight: () => (
              <Pressable
                onPress={() => navigation.navigate('Modal')}
                style={({ pressed }) => ({
                  opacity: pressed ? 0.5 : 1,
                })}>
-               {/* <FontAwesome
-                 name="info-circle"
-                 size={25}
-                 color={Colors[colorScheme].text}
-                 style={{ marginRight: 15 }}
-               /> */}
              </Pressable>
            ),
          })}
@@ -120,18 +153,20 @@ import Booking from '../screens/BookingScreen';
          name="ChatTab"
          component={ChatTab}
          options={{
-           title: 'Chat',
-           headerShown: false,
-           // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-         }}
+           title: 'Messages',
+           tabBarShowLabel: false,
+           headerShown: true,
+           tabBarIcon: ({ color }) => <Ionicons name="chatbubbles-outline" size={24} color={color} />,
+          }}
        />
        <BottomTab.Screen
          name="CalendarTab"
          component={Calendar}
          options={{
-           title: 'Calendar',
-           headerShown: false,
-           // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+           title: 'My Appointments',
+           tabBarShowLabel: false,
+           headerShown: true,
+           tabBarIcon: ({ color }) => <Feather name="calendar" size={24} color={color} />,
          }}
        />
        <BottomTab.Screen
@@ -139,76 +174,36 @@ import Booking from '../screens/BookingScreen';
          component={Profile}
          options={{
            title: 'Profile',
-           headerShown: false,
-           // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+           tabBarShowLabel: false,
+           headerShown: true,  
+           tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
          }}
        />
      </BottomTab.Navigator>
    );
  }
 
- const RegisterStack = createNativeStackNavigator();
+const RegisterStack = createNativeStackNavigator();
 
 function RegisterStackScreen() {
   return (
     <RegisterStack.Navigator>
+      <RegisterStack.Screen name="OnboardingOne" component={OnboardingOne} options={{ headerShown: false }} />
+      <RegisterStack.Screen name="OnboardingTwo" component={OnboardingTwo} options={{ headerShown: false }} />
+      <RegisterStack.Screen name="OnboardingThree" component={OnboardingThree} options={{ headerShown: false }} />
       <RegisterStack.Screen name="SignIn" component={LoginScreen} options={{ headerShown: false }}/>
       <RegisterStack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }}/>
     </RegisterStack.Navigator>
   );
 }
 
-
-//  /**
-//   * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
-//   * https://reactnavigation.org/docs/bottom-tab-navigator
-//   */
-//   const BottomTabPrincipal = createBottomTabNavigator<RootTabParamList>();
- 
-//   function BottomTabNavigatorPrincipal() {
-//     const colorScheme = useColorScheme();
-//       return(
-//         <BottomTab.Navigator
-//           initialRouteName="Dashboard"
-//           screenOptions={{
-//           tabBarActiveTintColor: Colors[colorScheme].tint,
-//           tabBarIconStyle: { display: "none" },
-//           tabBarLabelStyle: {
-//           fontSize: 20,
-//           fontWeight: 'bold',
-//           },
-//         }}>
-//           <BottomTab.Screen
-//             name="Profile"
-//             component={Profile}
-//             options={({ navigation }: RootTabScreenProps<'Profile'>) => ({
-//             title: 'Profile',
-//             headerShown: false,
-            
-//             // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-//             headerRight: () => (
-//               <Pressable
-//                 onPress={() => navigation.navigate('Modal')}
-//                 style={({ pressed }) => ({
-//                   opacity: pressed ? 0.5 : 1,
-//                 })}>
-//               </Pressable>
-//             ),
-//             })}
-//           />
-
-//         </BottomTab.Navigator>
-//       );
-//   }
-
-
  /**
   * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
   */
-//  function TabBarIcon(props: {
-//    name: React.ComponentProps<typeof FontAwesome>['name'];
-//    color: string;
-//  }) {
-//    return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-//  }
+ function TabBarIcon(props: {
+   name: React.ComponentProps<typeof FontAwesome>['name'];
+   color: string;
+ }) {
+   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+ }
  

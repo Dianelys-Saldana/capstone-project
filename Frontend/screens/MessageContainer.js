@@ -14,6 +14,11 @@ export const renderAvatar = (props) => (
 export const renderBubble = (props) => (
   <Bubble
     {...props}
+    wrapperStyle={{
+      right: {
+        backgroundColor: '#0074B7',
+      },
+    }}
     // renderTime={() => <Text>Time</Text>}
     // renderTicks={() => <Text>Ticks</Text>}
     // containerStyle={{

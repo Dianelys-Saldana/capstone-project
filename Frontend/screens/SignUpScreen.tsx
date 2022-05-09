@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Image, StyleSheet, TextInput, Pressable, Button, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
+import EditScreenInfo from '../components/EditScreenInfo';
 import Server from '../services/serverRoutes';
 import Auth from '../services/authentication';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -55,7 +55,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'Dashboa
         <TextInput 
           style={styles.firstName} 
           placeholder={'First Name'}
-          placeholderTextColor="#0E7979"
+          placeholderTextColor="#2E2E41"
           value={uFirstName}
           onChangeText={text => setName(text)}
           // returnKeyType="next"
@@ -66,17 +66,17 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'Dashboa
         <TextInput 
           style={styles.lastName} 
           placeholder={'Last Name'}
-          placeholderTextColor="#0E7979"
+          placeholderTextColor="#2E2E41"
           onChangeText={text => setLastName(text)}
           // value={uLastName} -> weird glitch
           // returnKeyType="next"
-        > </TextInput> 
+        />
 
       <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
         <TextInput 
           style={styles.email} 
           placeholder={'Email'}
-          placeholderTextColor="#0E7979"
+          placeholderTextColor="#2E2E41"
           value={uEmail}
           onChangeText={text => setEmail(text)}
           // error={!!email.error}
@@ -94,7 +94,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'Dashboa
         <TextInput 
           style={styles.phone}
           placeholder={'Phone'} 
-          placeholderTextColor="#0E7979"
+          placeholderTextColor="#2E2E41"
           keyboardType='phone-pad'
           value={phone}
           onChangeText={text => setPhone(text)}
@@ -102,7 +102,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'Dashboa
           > 
         </TextInput>
       
-      <Image style={styles.userIcon} source={require('../assets/images/user.png')}/>
+      <Image style={styles.userIcon} source={require('../assets/images/name.png')}/>
         <SelectDropdown
           data={users}
           // defaultValueByIndex={0}
@@ -130,7 +130,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'Dashboa
         <TextInput 
           style={styles.pass} 
           placeholder={'Password'} 
-          placeholderTextColor="#0E7979"
+          placeholderTextColor="#2E2E41"
           secureTextEntry 
           value={uPassword}
 
@@ -143,7 +143,7 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'Dashboa
         <TextInput 
           style={styles.confpass} 
           placeholder={'Confirm Password'} 
-          placeholderTextColor="#0E7979"
+          placeholderTextColor="#2E2E41"
           secureTextEntry
 
           returnKeyType="done"
@@ -152,8 +152,9 @@ export default function SignUpScreen({ navigation }: RootTabScreenProps<'Dashboa
         >
         </TextInput>
       
-      <Pressable style={styles.signup} onPress={_onSignUpPressed}>
-      {/* <Pressable style={styles.signup} onPress={() => navigation.navigate('Dashboard')}>   */}
+      {/* <Pressable style={styles.signup} onPress={_onSignUpPressed}> */}
+      {/* <Pressable style={styles.signup} onPress={() => navigation.navigate('Patient')}> */}
+      <Pressable style={styles.signup} onPress={() => navigation.navigate('Dashboard')}>  
         <Text style={styles.signuptext}>Sign up</Text>
       </Pressable>
 
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#C0DEDD',
+    backgroundColor: '#BFD7ED',
   },
   createAcc: {
     // fontSize: 20,
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     lineHeight: 50,
     textAlign: 'center',
-    color: '#0E7979',
+    color: '#2E2E41',
   },
   separator: {
     marginVertical: 30,
@@ -210,12 +211,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     
-    color: '#0E7979',
+    color: '#2E2E41',
 
     borderWidth: 2.5,
     padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
+    borderRadius: 23,
+    borderColor: '#2E2E41',
   },
   lastName:{
     position: 'absolute',
@@ -231,12 +232,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     
-    color: '#0E7979',
+    color: '#2E2E41',
 
     borderWidth: 2.5,
     padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
+    borderRadius: 23,
+    borderColor: '#2E2E41',
   },
   avatar: {
     position: 'absolute',
@@ -273,12 +274,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     
-    color: '#0E7979',
+    color: '#2E2E41',
 
     borderWidth: 2.5,
     padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
+    borderRadius: 23,
+    borderColor: '#2E2E41',
   },
   phone:{
     position: 'absolute',
@@ -294,12 +295,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     
-    color: '#0E7979',
+    color: '#2E2E41',
 
     borderWidth: 2.5,
     padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
+    borderRadius: 23,
+    borderColor: '#2E2E41',
   },
   phoneIcon:{
     position: 'absolute',
@@ -315,14 +316,14 @@ const styles = StyleSheet.create({
     left: 86,
     top: 408,
 
-    backgroundColor: '#C0DEDD',
-    borderRadius: 8,
+    backgroundColor: '#BFD7ED',
+    borderRadius: 23,
     borderWidth: 2.5,
-    borderColor: '#0E7979',
+    borderColor: '#2E2E41',
   },
   dropdown1BtnTxtStyle: { 
     // color: '#9dabac', 
-    color: '#0E7979',
+    color: '#2E2E41',
     textAlign: "left",
     left: 4,
     fontSize: 20,
@@ -336,7 +337,7 @@ const styles = StyleSheet.create({
   },
   dropdown1RowTxtStyle: { 
     // color: "#444", 
-    color: '#0E7979',
+    color: '#2E2E41',
     textAlign: "left", 
   },
   userIcon:{
@@ -367,12 +368,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     
-    color: '#0E7979',
+    color: '#2E2E41',
 
     borderWidth: 2.5,
     padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
+    borderRadius: 23,
+    borderColor: '#2E2E41',
   },
   confpass:{
     position: 'absolute',
@@ -388,12 +389,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     
-    color: '#0E7979',
+    color: '#2E2E41',
 
     borderWidth: 2.5,
     padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
+    borderRadius: 23,
+    borderColor: '#2E2E41',
   },
   confpassIcon: {
     position: 'absolute',
@@ -408,7 +409,7 @@ const styles = StyleSheet.create({
     height: 50.57,
     left: 115,
     top: 628,
-    backgroundColor: '#22A7A7',
+    backgroundColor: '#2E2E41',
     borderRadius: 30,
   },
   signuptext: {
@@ -460,7 +461,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     textDecorationLine: 'underline',
     
-    color: '#0E7979',   
+    color: '#2E2E41',   
   },
 });
 
