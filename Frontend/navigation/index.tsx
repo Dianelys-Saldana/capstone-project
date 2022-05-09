@@ -3,23 +3,31 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
- import { FontAwesome } from '@expo/vector-icons';
- import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
- import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
- import { createNativeStackNavigator } from '@react-navigation/native-stack';
- import * as React from 'react';
- import { ColorSchemeName, Pressable } from 'react-native';
- 
- import Colors from '../constants/Colors';
- import useColorScheme from '../hooks/useColorScheme';
- import ModalScreen from '../screens/ModalScreen';
- import NotFoundScreen from '../screens/NotFoundScreen';
- import TabOneScreen from '../screens/TabOneScreen';
- import TabTwoScreen from '../screens/TabTwoScreen';
- import Dashboard from '../screens/Dashboard';
- import Profile from '../screens/ProfileScreen';
- import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
- import LinkingConfiguration from './LinkingConfiguration';
+import { FontAwesome } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from 'react';
+import { ColorSchemeName, Pressable } from 'react-native';
+
+import Colors from '../constants/Colors';
+import useColorScheme from '../hooks/useColorScheme';
+import ModalScreen from '../screens/ModalScreen';
+import NotFoundScreen from '../screens/NotFoundScreen';
+import LoginScreen from '../screens/LoginScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import Dashboard from '../screens/Dashboard';
+import Profile from '../screens/ProfileScreen';
+import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import LinkingConfiguration from './LinkingConfiguration';
+import Specialty from '../screens/SpecialtyScreen';
+import Specialist from '../screens/SpecialistScreen';
+import Calendar from '../screens/CalendarScreen';
+import Success from '../screens/Success';
+import Reviews from '../screens/ReviewsScreen';
+import Chat from '../screens/ChatScreen';
+import ChatTab from '../screens/ChatGeneralScreen';
+import Booking from '../screens/BookingScreen';
  
  export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
    return (
@@ -40,12 +48,23 @@
  function RootNavigator() {
    return (
      <Stack.Navigator>
-       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+       <Stack.Screen name="Root" component={RegisterStackScreen} options={{ headerShown: false }} />
        <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
        <Stack.Group screenOptions={{ presentation: 'modal' }}>
          <Stack.Screen name="Modal" component={ModalScreen} />
        </Stack.Group>
-       <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
+       <Stack.Screen name="Specialty" component={Specialty} options={{ headerShown: false }} />
+       <Stack.Screen name="Specialist" component={Specialist} options={{ headerShown: false }} />
+       <Stack.Screen name="Success" component={Success} options={{ headerShown: false }} />
+       <Stack.Screen name="Reviews" component={Reviews} options={{ headerShown: false }} />
+
+       {/* <Stack.Screen name="SignIn" component={LoginScreen} options={{ headerShown: false }} />
+       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} /> */}
+
+       <Stack.Screen name="Dashboard" component={BottomTabNavigator} options={{ headerShown: false }} />
+       <Stack.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
+       <Stack.Screen name="Booking" component={Booking} options={{ headerShown: false }} />
+       {/* <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} /> */}
      </Stack.Navigator>
    );
  }
@@ -55,27 +74,29 @@
   * https://reactnavigation.org/docs/bottom-tab-navigator
   */
  const BottomTab = createBottomTabNavigator<RootTabParamList>();
- 
+
  function BottomTabNavigator() {
    const colorScheme = useColorScheme();
  
    return (
+
      <BottomTab.Navigator
-       initialRouteName="SignIn"
+       initialRouteName="DashboardTab"
        screenOptions={{
          tabBarActiveTintColor: Colors[colorScheme].tint,
          tabBarIconStyle: { display: "none" },
          tabBarLabelStyle: {
-          fontSize: 20,
+          fontSize: 15,
           fontWeight: 'bold',
         },
+        
        }}>
-     
+
        <BottomTab.Screen
-         name="SignIn"
-         component={TabOneScreen}
-         options={({ navigation }: RootTabScreenProps<'SignIn'>) => ({
-           title: 'Sign in',
+         name="DashboardTab"
+         component={Dashboard}
+         options={({ navigation }: RootTabScreenProps<'DashboardTab'>) => ({
+           title: 'Dash',
            headerShown: false,
            
            // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -96,10 +117,28 @@
          })}
        />
        <BottomTab.Screen
-         name="SignUp"
-         component={TabTwoScreen}
+         name="ChatTab"
+         component={ChatTab}
          options={{
-           title: 'Sign up',
+           title: 'Chat',
+           headerShown: false,
+           // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+         }}
+       />
+       <BottomTab.Screen
+         name="CalendarTab"
+         component={Calendar}
+         options={{
+           title: 'Calendar',
+           headerShown: false,
+           // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+         }}
+       />
+       <BottomTab.Screen
+         name="ProfileTab"
+         component={Profile}
+         options={{
+           title: 'Profile',
            headerShown: false,
            // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
          }}
@@ -108,48 +147,59 @@
    );
  }
 
+ const RegisterStack = createNativeStackNavigator();
 
- /**
-  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
-  * https://reactnavigation.org/docs/bottom-tab-navigator
-  */
-  // const BottomTabPrincipal = createBottomTabNavigator<RootTabParamList>();
+function RegisterStackScreen() {
+  return (
+    <RegisterStack.Navigator>
+      <RegisterStack.Screen name="SignIn" component={LoginScreen} options={{ headerShown: false }}/>
+      <RegisterStack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }}/>
+    </RegisterStack.Navigator>
+  );
+}
+
+
+//  /**
+//   * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
+//   * https://reactnavigation.org/docs/bottom-tab-navigator
+//   */
+//   const BottomTabPrincipal = createBottomTabNavigator<RootTabParamList>();
  
-  // function BottomTabNavigatorPrincipal() {
-  //   const colorScheme = useColorScheme();
-  //     return(
-  //       <BottomTab.Navigator
-  //         initialRouteName="Dashboard"
-  //         screenOptions={{
-  //         tabBarActiveTintColor: Colors[colorScheme].tint,
-  //         tabBarIconStyle: { display: "none" },
-  //         tabBarLabelStyle: {
-  //         fontSize: 20,
-  //         fontWeight: 'bold',
-  //         },
-  //       }}>
-  //         <BottomTab.Screen
-  //           name="Profile"
-  //           component={Profile}
-  //           options={({ navigation }: RootTabScreenProps<'Profile'>) => ({
-  //           title: 'Profile',
-  //           headerShown: false,
+//   function BottomTabNavigatorPrincipal() {
+//     const colorScheme = useColorScheme();
+//       return(
+//         <BottomTab.Navigator
+//           initialRouteName="Dashboard"
+//           screenOptions={{
+//           tabBarActiveTintColor: Colors[colorScheme].tint,
+//           tabBarIconStyle: { display: "none" },
+//           tabBarLabelStyle: {
+//           fontSize: 20,
+//           fontWeight: 'bold',
+//           },
+//         }}>
+//           <BottomTab.Screen
+//             name="Profile"
+//             component={Profile}
+//             options={({ navigation }: RootTabScreenProps<'Profile'>) => ({
+//             title: 'Profile',
+//             headerShown: false,
             
-  //           // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-  //           headerRight: () => (
-  //             <Pressable
-  //               onPress={() => navigation.navigate('Modal')}
-  //               style={({ pressed }) => ({
-  //                 opacity: pressed ? 0.5 : 1,
-  //               })}>
-  //             </Pressable>
-  //           ),
-  //           })}
-  //         />
+//             // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+//             headerRight: () => (
+//               <Pressable
+//                 onPress={() => navigation.navigate('Modal')}
+//                 style={({ pressed }) => ({
+//                   opacity: pressed ? 0.5 : 1,
+//                 })}>
+//               </Pressable>
+//             ),
+//             })}
+//           />
 
-  //       </BottomTab.Navigator>
-  //     );
-  // }
+//         </BottomTab.Navigator>
+//       );
+//   }
 
 
  /**

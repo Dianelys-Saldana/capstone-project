@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from model.user import UsersDAO
 from fastapi.encoders import jsonable_encoder as jsonify
 from email_validator import validate_email
-# from professional import BaseProfessionals
+from professional import BaseProfessionals
 
 class BaseUsers:
     def __init__ (self):

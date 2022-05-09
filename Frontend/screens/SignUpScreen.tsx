@@ -1,24 +1,50 @@
-import React, { useState } from 'react';
-import { Image, StyleSheet, TextInput, Button, Pressable, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
-
+import React, { useState, useEffect } from 'react';
+import { Image, StyleSheet, TextInput, Pressable, Button, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+import SelectDropdown from 'react-native-select-dropdown'
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
-import SelectDropdown from 'react-native-select-dropdown'
-
+import Server from '../services/serverRoutes';
+import Auth from '../services/authentication';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Ionicons } from "@expo/vector-icons";
+import { emailValidator, passwordValidator, nameValidator, lastNameValidator} from '../core/utils';
 
-const users = ["Patient", "Service Provider"]
-
-export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'>) {
+export default function SignUpScreen({ navigation }: RootTabScreenProps<'DashboardTab'>) {
   const [uFirstName, setName] = useState('');
   const [uLastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
   const [uEmail, setEmail] = useState('');
-  const [uPassword, setPass] = useState('');
-  const [userType, setuType] = useState('');
+  const [uPassword, setPassword] = useState('');
+  const [usertype, setUserType] = useState('');
+  const [phone, setPhone] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const users = ["Patient", "Service Provider"]
+
+  const _onSignUpPressed = () => {
+
+    const formData = { uFirstName, uLastName, uEmail, uPassword, usertype, phone, confirmPassword };
+
+    fetch('http://127.0.0.1:8000/signup', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+    }).then((res) => {
+      console.log('auth res:', JSON.stringify(res));
+      console.log(formData)
+      if (res.ok) {
+        res.json().then((data) => {
+          console.log(data);
+          navigation &&
+            navigation.navigate('Dashboard');
+        });
+      }
+    });
+  }
 
   return (
     <View style={styles.container}>
@@ -26,55 +52,108 @@ export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'
       <Text style={styles.createAcc}>Create Account</Text>
       
       <Image style={styles.avatar} source={require('../assets/images/name.png')}/>
-      <TextInput style={styles.firstName} placeholder={'First Name'}></TextInput>
+        <TextInput 
+          style={styles.firstName} 
+          placeholder={'First Name'}
+          placeholderTextColor="#0E7979"
+          value={uFirstName}
+          onChangeText={text => setName(text)}
+          // returnKeyType="next"
+          >
+        </TextInput>
 
       <Image style={styles.avatar2} source={require('../assets/images/name.png')}/>
-      <TextInput style={styles.lastName} placeholder={'Last Name'}></TextInput>
-
-      <Image style={styles.phoneIcon} source={require('../assets/images/phone.png')}/>
-      <TextInput style={styles.phone} placeholder={'Phone'} keyboardType='phone-pad'></TextInput>
+        <TextInput 
+          style={styles.lastName} 
+          placeholder={'Last Name'}
+          placeholderTextColor="#0E7979"
+          onChangeText={text => setLastName(text)}
+          // value={uLastName} -> weird glitch
+          // returnKeyType="next"
+        > </TextInput> 
 
       <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
-      <TextInput style={styles.email} placeholder={'Email'}></TextInput>
+        <TextInput 
+          style={styles.email} 
+          placeholder={'Email'}
+          placeholderTextColor="#0E7979"
+          value={uEmail}
+          onChangeText={text => setEmail(text)}
+          // error={!!email.error}
+          // errorText={email.error}
+          // returnKeyType="next"
+          // autoCompleteType="email"
+          // textContentType="emailAddress"
+          autoCapitalize="none"
+          keyboardType="email-address"
+          > 
+          {/* onChange={handleChange} */}
+        </TextInput>
+
+      <Image style={styles.phoneIcon} source={require('../assets/images/phone.png')}/>
+        <TextInput 
+          style={styles.phone}
+          placeholder={'Phone'} 
+          placeholderTextColor="#0E7979"
+          keyboardType='phone-pad'
+          value={phone}
+          onChangeText={text => setPhone(text)}
+          // returnKeyType="next"
+          > 
+        </TextInput>
       
       <Image style={styles.userIcon} source={require('../assets/images/user.png')}/>
-      <SelectDropdown
-        data={users}
-        // defaultValueByIndex={1}
-        // defaultValue={'Patient'}
-        onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index);
-        }}
-        defaultButtonText={"Select user type"}
-        buttonTextAfterSelection={(selectedItem, index) => {
-          return selectedItem;
-        }}
-        rowTextForSelection={(item, index) => {
-          return item;
-        }}
-        buttonStyle={styles.dropdown1BtnStyle}
-        buttonTextStyle={styles.dropdown1BtnTxtStyle}
-        dropdownStyle={styles.dropdown1DropdownStyle}
-        rowStyle={styles.dropdown1RowStyle}
-        rowTextStyle={styles.dropdown1RowTxtStyle}
-      />
+        <SelectDropdown
+          data={users}
+          // defaultValueByIndex={0}
+          // defaultValue={'Patient'}
+
+          onSelect={(selectedItem, index) => {
+            // console.log(selectedItem, index);
+            setUserType(selectedItem)
+          }}
+          defaultButtonText={"Select user type"}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            return selectedItem;
+          }}
+          rowTextForSelection={(item, index) => {
+            return item;
+          }}
+          buttonStyle={styles.dropdown1BtnStyle}
+          buttonTextStyle={styles.dropdown1BtnTxtStyle}
+          dropdownStyle={styles.dropdown1DropdownStyle}
+          rowStyle={styles.dropdown1RowStyle}
+          rowTextStyle={styles.dropdown1RowTxtStyle}
+        />
 
       <Image style={styles.passIcon} source={require('../assets/images/pass.png')}/>
-      <TextInput 
-        style={styles.pass} 
-        placeholder={'Password'} 
-        secureTextEntry 
-        // value={uPassword}
-      ></TextInput>
+        <TextInput 
+          style={styles.pass} 
+          placeholder={'Password'} 
+          placeholderTextColor="#0E7979"
+          secureTextEntry 
+          value={uPassword}
+
+          returnKeyType="done"
+          onChangeText={text => setPassword(text)}
+        > 
+        </TextInput>
       
       <Image style={styles.confpassIcon} source={require('../assets/images/pass.png')}/>
-      <TextInput 
-        style={styles.confpass} 
-        placeholder={'Confirm Password'} 
-        secureTextEntry
-      ></TextInput>
+        <TextInput 
+          style={styles.confpass} 
+          placeholder={'Confirm Password'} 
+          placeholderTextColor="#0E7979"
+          secureTextEntry
+
+          returnKeyType="done"
+          value={confirmPassword}
+          onChangeText={text => setConfirmPassword(text)}
+        >
+        </TextInput>
       
-      <Pressable style={styles.signup} onPress={() => {alert('Welcome!');}}>
+      <Pressable style={styles.signup} onPress={_onSignUpPressed}>
+      {/* <Pressable style={styles.signup} onPress={() => navigation.navigate('Dashboard')}>   */}
         <Text style={styles.signuptext}>Sign up</Text>
       </Pressable>
 
@@ -83,7 +162,7 @@ export default function TabTwoScreen({ navigation }: RootTabScreenProps<'SignUp'
         <Text style={styles.login}>Login</Text>
       </Pressable>
       
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      {/* <EditScreenInfo path="/screens/SignUp.tsx" /> */}
     </View>
   );
 }
@@ -242,21 +321,23 @@ const styles = StyleSheet.create({
     borderColor: '#0E7979',
   },
   dropdown1BtnTxtStyle: { 
-    color: '#9dabac', 
+    // color: '#9dabac', 
+    color: '#0E7979',
     textAlign: "left",
     left: 4,
     fontSize: 20,
   },
   dropdown1DropdownStyle: { 
-    backgroundColor: "#EFEFEF" 
+    backgroundColor: "#EFEFEF",
   },
   dropdown1RowStyle: {
     backgroundColor: "#EFEFEF",
-    borderBottomColor: "#C5C5C5",
+    borderBottomColor: "#C5C5C5"
   },
   dropdown1RowTxtStyle: { 
-    color: "#444", 
-    textAlign: "left" 
+    // color: "#444", 
+    color: '#0E7979',
+    textAlign: "left", 
   },
   userIcon:{
     position: 'absolute',
@@ -382,3 +463,5 @@ const styles = StyleSheet.create({
     color: '#0E7979',   
   },
 });
+
+
