@@ -26,7 +26,7 @@ export default function Success({ navigation }: RootTabScreenProps<'DashboardTab
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}> 
-    <BackButton goBack={() => navigation.navigate('Booking') } />
+    {/* <BackButton goBack={() => navigation.navigate('Booking') } /> */}
     <Pressable style={styles.container} onTouchEndCapture={() => navigation.navigate('Dashboard')}>
   
         <Image style={styles.icon} source={require('../assets/images/Ok.png')}/>
@@ -48,10 +48,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    width: 150,
-    height: 150,
-    top: 300,
-    left: 135,
+    width: 250,
+    height: 250,
+    top: 220,
+    left: 75,
   },
   success: {
     position: 'absolute',

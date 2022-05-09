@@ -20,6 +20,9 @@
 
    SignIn: undefined;
    SignUp: undefined;
+   OnboardingOne: undefined;
+   OnboardingTwo: undefined;
+   OnboardingThree: undefined;
 
    Specialty: undefined;
    Specialist: undefined;
@@ -28,7 +31,11 @@
    Dashboard: undefined;
    Chat: undefined;
    Booking: undefined;
-  //  Profile: undefined;
+   Patient: undefined;
+   Professional: undefined;
+   Personal: undefined;
+   About: undefined;
+   PrivacyPolicy: undefined;
  };
  
  export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -37,10 +44,6 @@
  >;
  
  export type RootTabParamList = {
-  //  Specialty: undefined;
-  //  Specialist: undefined;
-  //  Reviews: undefined;
-
    ChatTab: undefined;
    ProfileTab: undefined;
    DashboardTab: undefined;

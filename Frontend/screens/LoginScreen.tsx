@@ -8,7 +8,7 @@ import { RootTabScreenProps } from '../types';
 import Server from '../services/serverRoutes';
 import Auth from '../services/authentication';
 
-export default function LoginScreen({ navigation }: RootTabScreenProps<'SignIn'>) {
+export default function LoginScreen({ navigation }: RootTabScreenProps<'DashboardTab'>) {
 
   const [uEmail, setEmail] = useState('');
   const [uPassword, setPassword] = useState('');
@@ -40,14 +40,14 @@ export default function LoginScreen({ navigation }: RootTabScreenProps<'SignIn'>
   return (
     <View style={styles.container}>
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
-      <Image style={styles.welcomeImg} source={require('../assets/images/welcome.png')}/>
+      <Image style={styles.welcomeImg} source={require('../assets/images/2.png')}/>
       <Text style={styles.welcome}>Welcome Back!</Text>
 
       <Image style={styles.emailIcon} source={require('../assets/images/email.png')}/>
         <TextInput 
           style={styles.email} 
           placeholder={'Email'}
-          placeholderTextColor="#0E7979"
+          placeholderTextColor="#2E2E41"
           onChangeText={text => setEmail(text)}
           >
         </TextInput>
@@ -56,7 +56,7 @@ export default function LoginScreen({ navigation }: RootTabScreenProps<'SignIn'>
         <TextInput 
           style={styles.pass} 
           placeholder={'Password'}
-          placeholderTextColor="#0E7979"
+          placeholderTextColor="#2E2E41"
           secureTextEntry 
           onChangeText={text => setPassword(text)}
         ></TextInput>
@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#C0DEDD',
+    backgroundColor: '#BFD7ED',
+    // backgroundColor: '#ffca8e',
   },
   welcomeImg: {
     position: 'absolute',
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     lineHeight: 50,
     textAlign: 'center',
-    color: '#0E7979',
+    color: '#2E2E41',
   },
   separator: {
     marginVertical: 30,
@@ -134,12 +135,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     
-    color: '#0E7979',
+    color: '#2E2E41',
 
     borderWidth: 2.5,
     padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
+    borderRadius: 23,
+    borderColor: '#2E2E41',
   },
   passIcon: {
     position: 'absolute',
@@ -162,12 +163,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     
-    color: '#0E7979',
+    color: '#2E2E41',
 
     borderWidth: 2.5,
     padding: 10,
-    borderRadius: 8,
-    borderColor: '#0E7979',
+    borderRadius: 23,
+    borderColor: '#2E2E41',
   },
   forgot: {
     position: 'absolute',
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
     height: 50.57,
     left: 115,
     top: 660,
-    backgroundColor: '#22A7A7',
+    backgroundColor: '#2E2E41',
     borderRadius: 30,
   },
   loginText: {
@@ -236,6 +237,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     textDecorationLine: 'underline',
     
-    color: '#0E7979',   
+    color: '#2E2E41',   
   },
 });

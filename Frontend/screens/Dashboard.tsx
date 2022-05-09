@@ -23,7 +23,7 @@ export default function Dashboard({ navigation }: RootTabScreenProps<'DashboardT
             <Text style={styles.medicalSpec}>Medical Specialties</Text>
             <Text style={styles.see}>See all</Text>
 
-            <Pressable style={[styles.specBox,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialist')}> 
+            <Pressable style={[styles.specBox,{position: 'absolute'}]} onPress={() => navigation.navigate('Specialty')}> 
             {/* TODO: Cambiar ruta a Specialty */}
                 <Text style={styles.cardio}>Cardiology</Text>
                 <Image style={styles.cardioIcon} source={require('../assets/images/cardio.png')}/>
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 20,
     top: 100,
-    backgroundColor: '#DDE3E9',
+    backgroundColor: '#BFD7ED',
     borderRadius: 33,
   },
   medicalSpec: {
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 55,
     left: 24,
-    backgroundColor: '#2F3676',
+    backgroundColor: '#0074B7',
     borderRadius: 33,
   },
   specBox2: {
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 55,
     left: 134,
-    backgroundColor: '#2F3676',
+    backgroundColor: '#0074B7',
     borderRadius: 33,
   },
   specBox3: {
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 55,
     left: 244,
-    backgroundColor: '#2F3676',
+    backgroundColor: '#0074B7',
     borderRadius: 33,
   },
   specBox4: {
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 155,
     left: 24,
-    backgroundColor: '#2F3676',
+    backgroundColor: '#0074B7',
     borderRadius: 33,
   },
   specBox5: {
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 155,
     left: 134,
-    backgroundColor: '#2F3676',
+    backgroundColor: '#0074B7',
     borderRadius: 33,
   },
   specBox6: {
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 155,
     left: 244,
-    backgroundColor: '#2F3676',
+    backgroundColor: '#0074B7',
     borderRadius: 33,
   },
   specBox7: {
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 255,
     left: 24,
-    backgroundColor: '#2F3676',
+    backgroundColor: '#0074B7',
     borderRadius: 33,
   },
   specBox8: {
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 255,
     left: 134,
-    backgroundColor: '#2F3676',
+    backgroundColor: '#0074B7',
     borderRadius: 33,
   },
   specBox9: {
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 255,
     left: 244,
-    backgroundColor: '#2F3676',
+    backgroundColor: '#0074B7',
     borderRadius: 33,
   },
   box2: {
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 20,
     top: 490,
-    backgroundColor: '#C0DEDD',
+    backgroundColor: '#CCCCCC',
     borderRadius: 33,
   },
   wellSpec: {
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 55,
     left: 24,
-    backgroundColor: '#22A7A7',
+    backgroundColor: '#2E2E41',
     borderRadius: 33,
   },
   wellBox2: {
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 55,
     left: 134,
-    backgroundColor: '#22A7A7',
+    backgroundColor: '#2E2E41',
     borderRadius: 33,
   },
   wellBox3: {
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 55,
     left: 244,
-    backgroundColor: '#22A7A7',
+    backgroundColor: '#2E2E41',
     borderRadius: 33,
   },
   wellBox4: {
@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 155,
     left: 24,
-    backgroundColor: '#22A7A7',
+    backgroundColor: '#2E2E41',
     borderRadius: 33,
   },
   wellBox5: {
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 155,
     left: 134,
-    backgroundColor: '#22A7A7',
+    backgroundColor: '#2E2E41',
     borderRadius: 33,
   },
   wellBox6: {
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
     padding: 20,
     top: 155,
     left: 244,
-    backgroundColor: '#22A7A7',
+    backgroundColor: '#2E2E41',
     borderRadius: 33,
   },
   cardio: {

@@ -8,8 +8,10 @@ export const renderInputToolbar = (props) => (
   <InputToolbar
     {...props}
     containerStyle={{
-      backgroundColor: '#222B45',
+      backgroundColor: '#323337',
       paddingTop: 6,
+      // height: 75,
+      // top: 730,
     }}
     primaryStyle={{ alignItems: 'center' }}
   />
@@ -18,8 +20,9 @@ export const renderInputToolbar = (props) => (
 export const renderComposer = (props) => (
     <Composer
       {...props}
+      minComposerHeight={70}
       textInputStyle={{
-        color: '#222B45',
+        color: '#323337',
         backgroundColor: '#EDF1F7',
         borderWidth: 1,
         borderRadius: 5,
@@ -42,7 +45,12 @@ export const renderComposer = (props) => (
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 4,
-      }}>
+        color: '#22A7A7',
+      }}
+      textStyle={{
+        color: '#0074B7',
+      }}
+      >  
     </Send>
   );
 
