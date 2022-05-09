@@ -23,7 +23,7 @@ function signUp(data: any) {
 }
 function login(data: any) {
     const req = {
-        method: 'post',
+        method: 'get',
         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
         body: data
     };
@@ -81,7 +81,7 @@ function getAppointments(data: any) {
 }
 function deleteAppointment(mid: any){
     const req = {
-        method: 'DELETE',
+        method: 'delete',
         body: mid
     };
     return fetch(url + "/appointments", req).then(response => response.json())
@@ -96,7 +96,7 @@ function deleteAppointment(mid: any){
 }
 function updateAppointment(mid: any, data: any){
     const req = {
-        method: 'PUT',
+        method: 'put',
         headers: {'Content-Type':'application/json'}, 
         body: JSON.stringify(data)
     };
