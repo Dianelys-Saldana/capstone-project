@@ -43,7 +43,7 @@ function deleteUser(uemail: any){
         headers: {'Content-Type':'application/json'},
         body: uemail
     };
-    return fetch(url+"deleteprofile", req).then(response => response.json());
+    return fetch(url+"/deleteprofile", req).then(response => response.json());
 }
 function getUserData(uid: any) {
     const req = {

@@ -20,8 +20,6 @@ class UsersDAO:
         cursor = self.conn.cursor()
         query = "select * from users where email = %s;"
         result = cursor.execute(query, (email,))
-        self.conn.commit()
-        self.conn.close()
         return jsonify(result)
 
     def deleteUser(self, uid):
@@ -46,6 +44,4 @@ class UsersDAO:
         cursor = self.conn.cursor()
         cursor.execute(query, (uid,))
         urole = cursor.fetchone()[0]
-        self.conn.commit()
-        self.conn.close()
         return urole
