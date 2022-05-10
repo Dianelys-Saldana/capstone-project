@@ -103,10 +103,10 @@ def addUserInfo():
 @app.get("/userinfo", tags=["MediFast"])
 def getUserInfo():
     return {"message":"UserInfo"}
-@app.put()("/userinfo", tags=["MediFast"])
+@app.put("/userinfo", tags=["MediFast"])
 def updateUserInfo():
     return {"message":"UserInfo"}
-@app.delete()("/userinfo", tags=["MediFast"])
+@app.delete("/userinfo", tags=["MediFast"])
 def deleteUserInfo():
     return {"message":"UserInfo"}
 

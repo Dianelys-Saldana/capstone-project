@@ -26,6 +26,7 @@ class BaseUsers:
         dao = UsersDAO()
         email = validate_email(uEmail).email
         checkUser = dao.getUserInfo(email)
+        self.conn.reset()
         hash_uPassword = generate_password_hash(uPassword, method='sha256')
         if checkUser is None:
             uId = dao.createUser(uFirstName, uLastName, email, hash_uPassword, usertype, phone)
