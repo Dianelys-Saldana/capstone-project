@@ -17,4 +17,4 @@
 
 Here's a walkthrough of the App implementation:
 
-<img src='http://g.recordit.co/Ds8GOvAybj.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/oZQEUEQ6U3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
